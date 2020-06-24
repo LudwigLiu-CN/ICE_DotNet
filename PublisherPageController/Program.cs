@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DataAccessAPI.Models;
+using PublisherPageService;
+using PublisherPageService.Models;
+using System;
+using System.Security.Policy;
 
 namespace PublisherPageController
 {
@@ -6,7 +10,11 @@ namespace PublisherPageController
     {
         static void Main(string[] args)
         {
+            PublisherPageServiceUtil publisherPageService = new PublisherPageServiceUtil();
+            Response<Publishers> result = publisherPageService.publisherInfo(1);
+            Console.WriteLine(result.status);
             Console.WriteLine("Hello World!");
+
         }
     }
 }

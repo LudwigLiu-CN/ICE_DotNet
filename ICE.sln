@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessAPI", "DataAccess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService", "UserService\UserService.csproj", "{448FA9AA-D07F-4434-87F4-56A26FE5DA93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndexService", "IndexService\IndexService.csproj", "{3BEC6570-C5DB-4405-B015-7EB2210A6E65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{448FA9AA-D07F-4434-87F4-56A26FE5DA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{448FA9AA-D07F-4434-87F4-56A26FE5DA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{448FA9AA-D07F-4434-87F4-56A26FE5DA93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BEC6570-C5DB-4405-B015-7EB2210A6E65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BEC6570-C5DB-4405-B015-7EB2210A6E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BEC6570-C5DB-4405-B015-7EB2210A6E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BEC6570-C5DB-4405-B015-7EB2210A6E65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

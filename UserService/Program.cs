@@ -11,9 +11,10 @@ namespace UserService
             Console.WriteLine("Hello World!");
 
             Users user = new Users();
-            user.UserName = "DYT";
+            user.UserName = "wdnmd";
             user.Pwd = "123456";
-            int a = userServiceUtil.Login(user);
+            Response a = userServiceUtil.Register(user);
+            int b = 0;
         }
     }
 }

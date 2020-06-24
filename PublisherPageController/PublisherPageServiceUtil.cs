@@ -6,7 +6,6 @@ using DataAccessAPI.Models;
 using DataAccessAPI.Controllers;
 using System.Collections;
 using PublisherPageService.Models;
-using System.Security.Policy;
 
 namespace PublisherPageService
 {
@@ -14,11 +13,40 @@ namespace PublisherPageService
     {
         PublisherMapper publisherMapper = new PublisherMapper();
 
+        // publisherLogin
+        public Response publisherLogin(Publishers publishers)
+        {
+            Response response = new Response();
+            if (publisherMapper.SelectByName(publishers.PublisherName).Count==0)
+            {
+                response.status = "404";
+                response.error = "Publisher not exist";
+                return response;
+            }
+            else
+            {
+                Publishers publisherRecord = publisherMapper.SelectByName(publishers.PublisherName)[0];
+                if (publisherRecord.Pwd != publishers.Pwd)
+                {
+                    response.status = "403";
+                    response.error = "Wrong password !";
+                    return response;
+                }
+                else
+                {
+                    response.status = "200";
+                    return response;
+                }
+            }
+        }
         
 
-        public Response<Publishers> publisherInfo(int id)
+        
+        
+        // publishInfo
+        public Response publisherInfo(int id)
         {
-            Response<Publishers> response = new Response<Publishers>();
+            Response response = new Response();
             if (publisherMapper.SelectByPrimaryKey(id) == null)
             {
                 response.status = "403";
@@ -28,15 +56,38 @@ namespace PublisherPageService
             }
 
             Publishers publishers = publisherMapper.SelectByPrimaryKey(id);
-            List<Publishers> result = new List<Publishers>();
+            ArrayList result = new ArrayList();
             result.Add(publishers);
             response.result = result;
 
             response.status = "200";
             return response;
 
+        }
+        //updatePublisherInfo
+        public Response updateResponseInfo(Publishers publisher, int id)
+        {
+            Response response = new Response();
+            if(publisherMapper.SelectByPrimaryKey(id) == null)
+            {
+                response.status = "403";
+                response.error = "";
+                return response;
+            }
 
-            
+            publisher.PublisherId = id;
+            try
+            {
+                publisherMapper.UpdateByPrimaryKeySelective(publisher);
+            }catch(Exception e)
+            {
+                response.status = "500";
+                response.error = "Update Failed ！";
+                return response;
+            }
+            response.error = "Update Success!";
+            response.status = "200";
+            return response;
         }
     }
 }

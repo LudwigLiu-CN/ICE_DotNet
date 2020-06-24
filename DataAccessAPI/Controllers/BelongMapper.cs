@@ -8,9 +8,11 @@ using DataAccessAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DataAccess.Controllers
+namespace DataAccessAPI.Controllers
 {
-    public class BelongMapper
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BelongMapper : ControllerBase
     {
         private iceContext iceContext_ = new iceContext();
 
@@ -36,6 +38,17 @@ namespace DataAccess.Controllers
         public void UpdateByPrimaryKey(Belong update)
         {
             iceContext_.Belong.Update(update);
+            iceContext_.SaveChanges();
+        }
+
+        public void UpdateByPrimaryKeySelective(Belong update)
+        {
+            Belong target = iceContext_.Belong.Find(update.GameId);
+            if (update.CateId != null)
+            {
+                target.CateId = update.CateId;
+            }
+            iceContext_.Update(target);
             iceContext_.SaveChanges();
         }
 

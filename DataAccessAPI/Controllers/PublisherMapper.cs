@@ -24,6 +24,57 @@ namespace DataAccess.Controllers
             return p;
         }
 
+        public void UpdateByPrimaryKeySelective(Publishers record)
+        {
+            Publishers p = _context.Publishers.Find(record.PublisherId);
+
+            if (record.PublisherName != null)
+            {
+                p.PublisherName = record.PublisherName;
+            }
+
+            if (record.LogoPath != null)
+            {
+                p.PublisherName = record.PublisherName;
+            }
+
+            if (record.Pwd != null)
+            {
+                p.Pwd = record.Pwd;
+            }
+
+            if (record.Description != null)
+            {
+                p.Description = record.Description;
+            }
+            _context.Publishers.Update(p);
+            _context.SaveChanges();
+
+        }
+
+        public List<Publishers> SelectAll()
+        {
+            var targets = from p in _context.Publishers select p;
+            List<Publishers> result = new List<Publishers>();
+            foreach(var t in targets)
+            {
+                result.Add(t);
+            }
+            return result;
+
+        }
+
+        public List<Publishers> SelectByName(String publisherName)
+        {
+            var targets = from p in _context.Publishers where p.PublisherName==publisherName select p;
+            List<Publishers> result = new List<Publishers>();
+            foreach (var t in targets)
+            {
+                result.Add(t);
+            }
+            return result;
+
+        }
 
     }
 }

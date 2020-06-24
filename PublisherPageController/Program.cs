@@ -12,7 +12,7 @@ namespace PublisherPageController
         {
             PublisherPageServiceUtil publisherPageService = new PublisherPageServiceUtil();
             Response<Publishers> result = publisherPageService.publisherInfo(1);
-            Console.WriteLine(result.status);
+            Console.WriteLine(result.result[0].PublisherName);
             Console.WriteLine("Hello World!");
 
         }

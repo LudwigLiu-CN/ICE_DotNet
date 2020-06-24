@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessAPI", "DataAccessAPI\DataAccessAPI.csproj", "{D08D53B2-8F10-4AA3-84DA-41685BC89F90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublisherPageController", "PublisherPageController\PublisherPageController.csproj", "{A0893565-C7B0-4001-AA9A-6B7EF5417C57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublisherPageService", "PublisherPageController\PublisherPageService.csproj", "{A0893565-C7B0-4001-AA9A-6B7EF5417C57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

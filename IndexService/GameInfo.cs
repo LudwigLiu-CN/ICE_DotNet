@@ -10,6 +10,7 @@ namespace IndexService
     class GameInfo
     {
         static HasTagMapper hasTagMapper = new HasTagMapper();
+        static RateGameMapper rateGameMapper = new RateGameMapper();
         public int id { get; set; }
         public String cover_path { get; set; }
         public float? price { get; set; }
@@ -37,14 +38,13 @@ namespace IndexService
             return result;
         }
 
-
-        public static ArrayList sortGames(ArrayList gameList, int flag)
+        public static ArrayList sort(ArrayList gameList, int flag)
         {
             if(flag == 2||flag== 3){
-
+                gameList = sortByPrice(gameList, flag);
             }
             else if(flag == 4||flag == 5){
-
+                gameList = sortByRate(gameList, flag);
             }
             else
             {
@@ -85,6 +85,44 @@ namespace IndexService
             }
 
             if (flag == 2)
+            {
+                toBeSorted.Reverse();
+            }
+
+            return toBeSorted;
+        }
+
+        public static ArrayList sortByRate(ArrayList gameList, int flag)
+        {
+            bool swapped = false;
+
+            ArrayList toBeSorted = new ArrayList();
+            foreach (var g in gameList)
+            {
+                toBeSorted.Add(g);
+            }
+
+            while (true)
+            {
+                swapped = false;
+                for (int k = 0; k < toBeSorted.Count - 1; k++)
+                {
+                    Games crtGame = (Games)toBeSorted[k];
+                    Games nextGame = (Games)toBeSorted[k + 1];
+                    if (rateGameMapper.GetAverage(crtGame.GameId) > rateGameMapper.GetAverage(nextGame.GameId))
+                    {
+                        toBeSorted[k] = nextGame;
+                        toBeSorted[k + 1] = crtGame;
+                        swapped = true;
+                    }
+                }
+                if (swapped == false)
+                {
+                    break;
+                }
+            }
+
+            if (flag == 4)
             {
                 toBeSorted.Reverse();
             }

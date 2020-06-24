@@ -9,12 +9,6 @@ namespace UserService
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
-            Users user = new Users();
-            user.UserName = "wdnmd";
-            user.Pwd = "123456";
-            Response a = userServiceUtil.Register(user);
-            int b = 0;
         }
     }
 }

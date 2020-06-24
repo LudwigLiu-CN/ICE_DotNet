@@ -1,5 +1,6 @@
 ﻿using DataAccess.Controllers;
 using DataAccessAPI.Models;
+using ResponseClass;
 using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections;
@@ -20,6 +21,12 @@ namespace UserService
                 return target.UserId;
             }
             return -1;
+        }
+
+        public Response Register(Users user)
+        {
+            Response response = new Response();
+            response
         }
     }
 }

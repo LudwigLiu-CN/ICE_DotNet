@@ -40,7 +40,7 @@ namespace ICE.Contexts
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost;userid=root;pwd=20140626lym;port=3306;database=ice;sslmode=none", x => x.ServerVersion("8.0.18-mysql"));
+                optionsBuilder.UseMySql("server=localhost;userid=root;pwd=1234;port=3306;database=ice;sslmode=none", x => x.ServerVersion("8.0.18-mysql"));
             }
         }
 

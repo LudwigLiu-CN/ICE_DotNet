@@ -7,9 +7,9 @@ namespace ICE.Models
     {
         public int OrderId { get; set; }
         public DateTime? Date { get; set; }
-        public string Address { get; set; }
-        public int ConsoleId { get; set; }
-        public string ContactTel { get; set; }
+        public string? Address { get; set; }
+        public int? ConsoleId { get; set; }
+        public string? ContactTel { get; set; }
         public int? Status { get; set; }
         public int UserId { get; set; }
         public int GameId { get; set; }

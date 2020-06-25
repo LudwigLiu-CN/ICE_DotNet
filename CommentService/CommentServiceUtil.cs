@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CommentService
 {
-    class CommentServiceUtil
+    public class CommentServiceUtil
     {
         WriteReviewMapper writeReviewMapper = new WriteReviewMapper();
         ReviewsMapper reviewsMapper = new ReviewsMapper();

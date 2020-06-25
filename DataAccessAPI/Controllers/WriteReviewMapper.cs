@@ -43,10 +43,11 @@ namespace DataAccess.Controllers
 
         public int GetWheatherCommented(int userId, int gameId)
         {
-            var reviewIds = from wr in iceContext_.WriteReview 
-                               join hr in iceContext_.HasReview on wr.ReviewId equals hr.ReviewId
-                               where wr.UserId == userId
-                               select wr.ReviewId;
+            var reviewIds = from wr in iceContext_.WriteReview
+                            join hr in iceContext_.HasReview on wr.ReviewId equals hr.ReviewId
+                            where wr.UserId == userId
+                            where hr.GameId == gameId
+                            select wr.ReviewId;
             ArrayList al = new ArrayList();
             foreach(var id in reviewIds)
             {

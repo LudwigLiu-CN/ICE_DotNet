@@ -11,6 +11,7 @@ namespace OrderService
     {
         OrdersMapper ordersMapper = new OrdersMapper();
         UserMapper userMapper = new UserMapper();
+        OrderManager orderManager = new OrderManager();
         List<Orders> orderList_0 = new List<Orders>();
         List<Orders> orderList_1 = new List<Orders>();
         List<Orders> orderList_2 = new List<Orders>();
@@ -98,12 +99,11 @@ namespace OrderService
                 temp = orderList_4;
             }
 
-            // 这里缺少一个数据格式的转换，在idea中好像涉及到service，暂不处理
-            // List<Orders> result = 
+            // List<OrderManager> result = new List<OrderManager>();
             ArrayList result = new ArrayList();
             for(int i = 0; i < temp.Count; i++)
             {
-                result.Add(temp[i]);
+                result.Add(orderManager.convertToOrderManager(temp[i]));
             }
 
             response.status = "200";
@@ -135,11 +135,9 @@ namespace OrderService
         }
 
         // 参数是输入的json，不是严格的Orders
-        public Response CreateOrder(Orders order)
+        public Response CreateOrder(int userId, Orders order)
         {
             Response response = new Response();
-
-            int userId = 100002;
             
             if(userMapper.SelectByPrimaryKey(userId) == null)
             {

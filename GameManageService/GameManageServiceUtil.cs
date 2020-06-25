@@ -172,28 +172,28 @@ namespace GameManageService
         public Response searchPublishedGames(String query, int currentPage, int pageSize, int id)
         {
             Response response = new Response();
+            
             if (publisherMapper.SelectByPrimaryKey(id) == null)
             {
                 response.status = "403";
                 response.error = "";
                 return response;
             }
-            if (publisherMapper.SelectByPrimaryKey(id) == null)
-            {
-                response.status = "403";
-                response.error = "";
-                return response;
-            }
+            
 
             if (allGameList.Count == 0)
             {
                 return initGameList(pageSize, id);
             }
+
             presentGameList.Clear();
             for (int i = 0; i < allGameList.Count; i++)
             {
+
                 if (allGameList[i].Title.ToLower().Contains(query.ToLower()))
                 {
+                    Console.WriteLine("title" + allGameList[i].Title.ToLower());
+
                     presentGameList.Add(allGameList[i]);
                 }
             }
@@ -205,6 +205,7 @@ namespace GameManageService
                 {
                     break;
                 }
+                Console.WriteLine("add");
                 response.result.Add(this.convertToGameManager(presentGameList[i]));
             }
             //分页器实现
@@ -216,10 +217,7 @@ namespace GameManageService
         {
             Response response = new Response();
 
-            //if (!Objects.equals(sessionService.auth(session).getStatus(), "200"))
-            //{
-            //    return sessionService.auth(session);
-            //}
+   
             if (publisherMapper.SelectByPrimaryKey(id) == null)
             {
                 response.status = "403";
@@ -393,11 +391,30 @@ namespace GameManageService
             }
 
             Games gameRecord = gamesMapper.SelectByPrimaryKey(gameModifier.game_id);
-            gameRecord.Title=gameModifier.title;
-            gameRecord.Discount=gameModifier.discount;
-            gameRecord.PreOrder=gameModifier.pre_order;
-            gameRecord.Description=gameModifier.description;
-            gameRecord.Price=gameModifier.price;
+            if (gameModifier.title != null)
+            {
+                gameRecord.Title = gameModifier.title;
+
+            }
+            if (gameModifier.discount != null)
+            {
+                gameRecord.Discount = gameModifier.discount;
+
+            }
+            if (gameModifier.pre_order != null)
+            {
+                gameRecord.PreOrder = gameModifier.pre_order;
+
+            }
+            if (gameModifier.description != null)
+            {
+                gameRecord.Description = gameModifier.description;
+            }
+            if (gameModifier.price != null)
+            {
+                gameRecord.Price = gameModifier.price;
+            }
+
             gamesMapper.UpdatePrimaryKeySelective(gameRecord);
 
             //console

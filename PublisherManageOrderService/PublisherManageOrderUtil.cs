@@ -157,7 +157,7 @@ namespace PublisherManageOrderService
         }
 
         //alterOrder
-        public Response alterOrder(int order_id,int status,float price,String address,String contact_tel,int id)
+        public Response alterOrder(int order_id,int? status,float? price,String address,String contact_tel,int id)
         {
             Response response = new Response();
             int pubId = id;
@@ -175,31 +175,31 @@ namespace PublisherManageOrderService
                 response.error = "";
                 return response;
             }
-            Orders orders = new Orders();
-            orders.OrderId = order_id;
+            //Orders orders = new Orders();
+            //orders.OrderId = order_id;
 
             if (status != null)
             {
                 if (status >= 0 && status <= 4)
                 {
-                    orders.Status=status;
+                    origin_order.Status=status;
                 }
             }
             if (price != null)
             {
-                orders.Price=price;
+                origin_order.Price=price;
             }
             if (address != null)
             {
-                orders.Address=address;
+                origin_order.Address=address;
             }
             if (contact_tel != null)
             {
-                orders.ContactTel=contact_tel;
+                origin_order.ContactTel=contact_tel;
             }
             try
             {
-                ordersMapper.UpdateByPrimaryKeySelective(orders);
+                ordersMapper.UpdateByPrimaryKeySelective(origin_order);
             }catch(Exception e)
             {
                 response.status = "500";

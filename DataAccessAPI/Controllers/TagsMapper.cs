@@ -41,7 +41,7 @@ namespace DataAccess.Controllers
             ArrayList results = new ArrayList();
             foreach(var t in targets)
             {
-                results.Add(results);
+                results.Add(t);
             }
             return results;
         }

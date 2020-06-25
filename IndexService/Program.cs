@@ -10,6 +10,7 @@ namespace IndexService
 
             IndexServiceUtil indexServiceUtil = new IndexServiceUtil();
             Response re = indexServiceUtil.GetGames(true);
+            Response re1 = indexServiceUtil.SortGames(1);
             int b = 0;
         }
     }

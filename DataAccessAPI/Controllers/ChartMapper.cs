@@ -49,11 +49,12 @@ namespace DataAccess.Controllers
             foreach(var c in targets)
             {
                 CartItem cartItem = new CartItem();
-                cartItem.GameId = c.Game.GameId;
-                cartItem.title = c.Game.Title;
-                cartItem.price = c.Game.Price;
-                cartItem.coverPath = c.Game.CoverPath;
-                cartItem.discount = c.Game.Discount;
+                Games game = iceContext_.Games.Find(c.GameId);
+                cartItem.GameId = game.GameId;
+                cartItem.title = game.Title;
+                cartItem.price = game.Price;
+                cartItem.coverPath = game.CoverPath;
+                cartItem.discount = game.Discount;
                 cartItem.consoleName = consolesMapper.SelectByPrimaryKey(c.ConsoleId).ConsoleName;
                 cartItem.consoleId = c.ConsoleId;
                 cartItem.cateId = c.Game.Belong.CateId;

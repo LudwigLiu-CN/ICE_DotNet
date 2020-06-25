@@ -56,7 +56,7 @@ namespace DataAccess.Controllers
         {
             var targets = from p in _context.Publishers select p;
             List<Publishers> result = new List<Publishers>();
-            foreach(var t in targets)
+            foreach (var t in targets)
             {
                 result.Add(t);
             }
@@ -66,7 +66,7 @@ namespace DataAccess.Controllers
 
         public List<Publishers> SelectByName(String publisherName)
         {
-            var targets = from p in _context.Publishers where p.PublisherName==publisherName select p;
+            var targets = from p in _context.Publishers where p.PublisherName == publisherName select p;
             List<Publishers> result = new List<Publishers>();
             foreach (var t in targets)
             {

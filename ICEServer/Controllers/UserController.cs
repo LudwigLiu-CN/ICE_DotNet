@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -55,11 +56,81 @@ namespace ICEServer.Controllers
 
         }
 
+        [Route("/logout")]
+        [HttpPost]
+        public Response logout()
+        {
+            var httpContext = _accessor.HttpContext;
+            SessionHelper session = new SessionHelper(httpContext);
+            session.SetSession("id", "-1");
+
+            Response response = new Response();
+            response.status = "200";
+            return response;
+        }
+
+        [Route("/register")]
+        [HttpPost]
+        public Response register(Users user)
+        {
+            return userServiceUtil.Register(user);
+        }
+
         [Route("/updateInfo")]
         [HttpPost]
         public Response updateInfo(Users user)
         {
             return userServiceUtil.UpdateInfo(user);
+        }
+
+        //updateAvatar
+
+        [Route("/getAddress")]
+        [HttpPost]
+        public Response getAddress()
+        {
+            var httpContext = _accessor.HttpContext;
+            SessionHelper session = new SessionHelper(httpContext);
+            String idStr = session.GetSession("id");
+            if(idStr == null)
+            {
+                Response response = new Response();
+                response.status = "500";
+                response.error = "Haven't logged in yet!";
+                return response;
+            }
+            if(Convert.ToInt32(idStr) < 0)
+            {
+                Response response = new Response();
+                response.status = "500";
+                response.error = "Haven't logged in yet!";
+                return response;
+            }
+            return userServiceUtil.getAddress(Convert.ToInt32(idStr));
+        }
+
+        [Route("/updateAddress")]
+        [HttpPost]
+        public Response updateAddress(ArrayList addresses)
+        {
+            var httpContext = _accessor.HttpContext;
+            SessionHelper session = new SessionHelper(httpContext);
+            String idStr = session.GetSession("id");
+            if (idStr == null)
+            {
+                Response response = new Response();
+                response.status = "500";
+                response.error = "Haven't logged in yet!";
+                return response;
+            }
+            if (Convert.ToInt32(idStr) < 0)
+            {
+                Response response = new Response();
+                response.status = "500";
+                response.error = "Haven't logged in yet!";
+                return response;
+            }
+            return userServiceUtil.UpdateAddress(addresses, Convert.ToInt32(idStr));
         }
     }
 }

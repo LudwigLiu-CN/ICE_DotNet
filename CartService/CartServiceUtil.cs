@@ -1,4 +1,7 @@
 ﻿using DataAccess.Controllers;
+using DataAccessAPI.Contexts;
+using DataAccessAPI.Controllers;
+using DataAccessAPI.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,12 +12,24 @@ namespace CartService
     class CartServiceUtil
     {
         ChartMapper chartMapper = new ChartMapper();
+        BelongMapper belongMapper = new BelongMapper();
+        CategoriesMapper categoriesMapper = new CategoriesMapper();
 
         public Response GetMyCart(int thisUserId, int from = 0, int to = 100, int reserve = 1)
         {
             Response response = new Response();
 
             ArrayList resultList = chartMapper.GetMyCart(thisUserId, from, to - from, reserve);
+            foreach(CartItem cartItem in resultList)
+            {
+                Belong belong = belongMapper.SelectByPrimaryKey(cartItem.GameId);
+                cartItem.cateId = belong.CateId;
+            }
+            foreach(CartItem cartItem in resultList)
+            {
+                Categories categories = categoriesMapper.SelectByPrimaryKey(cartItem.cateId);
+                cartItem.cateName = categories.CateName;
+            }
 
             response.status = "200";
             response.result = resultList;

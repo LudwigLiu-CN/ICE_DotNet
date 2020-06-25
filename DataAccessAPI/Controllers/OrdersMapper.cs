@@ -84,7 +84,7 @@ namespace DataAccess.Controllers
             {
                 target.Price = order.Price;
             }
-            iceContext_.Orders.Update(record);
+            iceContext_.Orders.Update(target);
             iceContext_.SaveChanges();
         }
         [Route("/OrdersMapper/orderNumOf")]

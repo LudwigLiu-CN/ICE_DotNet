@@ -1,10 +1,11 @@
 ﻿using DataAccessAPI.Models;
+using ResponseClass;
 using System;
 using System.Collections;
 
 namespace GameManageService
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

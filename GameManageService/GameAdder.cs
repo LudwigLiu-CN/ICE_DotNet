@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameManageService
 {
-    class GameAdder
+    public class GameAdder
     {
         public String title{get;set;}
         public float price{get;set;}

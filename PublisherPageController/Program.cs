@@ -1,6 +1,7 @@
 ﻿using DataAccessAPI.Models;
 using PublisherPageService;
 using PublisherPageService.Models;
+using ResponseClass;
 using System;
 
 namespace PublisherPageController

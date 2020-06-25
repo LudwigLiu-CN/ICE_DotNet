@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameManageService
 {
-    class GameManager
+    public class GameManager
     {
         public int game_id { get; set; }
         public String title { get; set; }

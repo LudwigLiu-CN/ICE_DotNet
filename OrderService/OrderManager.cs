@@ -6,7 +6,7 @@ using System.Text;
 
 namespace OrderService
 {
-    class OrderManager
+    public class OrderManager
     {
         ConsolesMapper consolesMapper = new ConsolesMapper();
         UserMapper userMapper = new UserMapper();

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using ResponseClass;
+using System;
 
 namespace GameService
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

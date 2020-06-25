@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,6 +76,37 @@ namespace ICEServer.Controllers
         }
 
         //updateAvatar
+        [Route("/updateAvatar")]
+        [HttpPost]
+        public Response updateAvatar(IFormCollection files)
+        {
+            Response response = new Response();
+            int? id = HttpContext.Session.GetInt32("id");
+            if(id == null)
+            {
+                response.status = "500";
+                response.error = "haven't logged in yet!";
+                return response;
+            }
+            else if (id < 0)
+            {
+                response.status = "500";
+                response.error = "haven't logged in yet!";
+                return response;
+            }
+
+            foreach (var f in files.Files)
+            {
+                string[] strs = f.FileName.Split('.');
+                string path = "Img/Users/" + id.ToString() + "." + strs[strs.Length - 1];
+
+                f.CopyTo(new FileStream(path, FileMode.Create));
+
+                response =  userServiceUtil.updateAvatar(path, id.Value);
+            }
+
+            return response;
+        }
 
         [Route("/getAddress")]
         [HttpPost]

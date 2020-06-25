@@ -29,7 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="Img\Users\" />
+    <Folder Include="Img\Games\" />
   </ItemGroup>
 
 

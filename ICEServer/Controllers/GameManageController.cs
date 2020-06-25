@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GameManageService;
@@ -95,6 +96,33 @@ namespace ICEServer.Controllers
             else
             {
                 Response response = gameManageService.addGame(gameAdder, id.Value);
+                return response;
+            }
+        }
+
+        [Route("/postImg")]
+        [HttpPost]
+        public Response postImg(IFormCollection files,String type,int game_id)
+        {
+            Response response = new Response();
+
+            int? id = HttpContext.Session.GetInt32("id");
+            if (id == null || id < 0)
+            {
+                response.status = "500";
+                response.error = "Haven't logged in yet!";
+                return response;
+            }
+            else
+            {
+                foreach(var f in files.Files)
+                {
+                    string[] strs = f.FileName.Split('.');
+                    string path = "Img/Games/" + game_id +"/"+game_id+type+"."+strs[strs.Length-1];
+                    f.CopyTo(new FileStream(path, FileMode.Create));
+                    response.status = "200";
+                }
+                
                 return response;
             }
         }

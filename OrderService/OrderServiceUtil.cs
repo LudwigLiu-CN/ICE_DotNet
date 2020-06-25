@@ -146,9 +146,9 @@ namespace OrderService
                 return response;
             }
 
-            order.OrderId = 0;
+            order.OrderId = 1;
             order.Status = 0;
-            order.Date = new DateTime();
+            order.Date = DateTime.Now;
             order.UserId = userId;
 
             try

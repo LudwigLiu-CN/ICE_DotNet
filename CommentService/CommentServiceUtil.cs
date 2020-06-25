@@ -14,71 +14,66 @@ namespace CommentService
         HasReviewMapper hasReviewMapper = new HasReviewMapper();
         OrdersMapper ordersMapper = new OrdersMapper();
         UserMapper userMapper = new UserMapper();
-        
-        // 输入格式为json，不是Review
-        //public Response AddComment(Reviews r)
-        //{
-        //    Response response = new Response();
 
-        //    int thisUserId = 100002;
+        public Response AddComment(int thisUserId, ReviewAdder r)
+        {
+            Response response = new Response();
 
-        //    Reviews review = new Reviews();
-        //    review.Content = r.Content;
-        //    review.ReviewDate = new DateTime();
+            Reviews review = new Reviews();
+            review.Content = r.content;
+            review.ReviewDate = new DateTime();
 
-        //    try
-        //    {
-        //        // 这里需要writeReviewMapper的getWhetherCommented函数，此函数未实现
-        //        // int c = writeReviewMapper.
-        //        int c;
-        //        if (c == 1)
-        //        {
-        //            response.status = "403";
-        //            response.error = "You have already commented!";
-        //            return response;
-        //        }
-        //        else if (c > 1)
-        //        {
-        //            response.status = "403";
-        //            response.error = "Fatal error:" + c + "comments found. Please contact the backend.";
-        //            return response;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        response.error = "SQL Error";
-        //        response.status = "403";
-        //        return response;
-        //    }
+            try
+            {
+                int c = writeReviewMapper.GetWheatherCommented(thisUserId, r.gameId);
+                if (c == 1)
+                {
+                    response.status = "403";
+                    response.error = "You have already commented!";
+                    return response;
+                }
+                else if (c > 1)
+                {
+                    response.status = "403";
+                    response.error = "Fatal error:" + c + "comments found. Please contact the backend.";
+                    return response;
+                }
+            }
+            catch (Exception e)
+            {
+                response.error = "SQL Error1";
+                response.status = "403";
+                return response;
+            }
 
-        //    try
-        //    {
-        //        reviewsMapper.Insert(review);
-        //        HasReview hasReview = new HasReview();
-        //        hasReview.GameId = r.GameId;
-        //        hasReview.ReviewId = reviewsMapper.GetLatestInsertReviewId();
-        //        hasReviewMapper.Insert(hasReview);
+            try
+            {
+                reviewsMapper.Insert(review);
+                HasReview hasReview = new HasReview();
+                hasReview.GameId = r.gameId;
+                hasReview.ReviewId = reviewsMapper.GetLatestInsertReviewId();
+                hasReviewMapper.Insert(hasReview);
 
-        //        WriteReview writeReview = new WriteReview();
-        //        writeReview.ReviewId = reviewsMapper.GetLatestInsertReviewId();
-        //        writeReview.UserId = thisUserId;
-        //        writeReviewMapper.Insert(writeReview);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        response.error = "SQL Error";
-        //        response.status = "403";
-        //        return response;
-        //    }
+                WriteReview writeReview = new WriteReview();
+                writeReview.ReviewId = reviewsMapper.GetLatestInsertReviewId();
+                writeReview.UserId = thisUserId;
+                writeReviewMapper.Insert(writeReview);
+            }
+            catch (Exception e)
+            {
+                response.error = "SQL Error2";
+                response.status = "403";
+                return response;
+            }
 
-        //    Orders order_record = ordersMapper.SelectByPrimaryKey(r.OrderId);
-        //    order_record.Status = 3;
-        //    ordersMapper.UpdateByPrimaryKeySelective(order_record);
+            Orders order_record = ordersMapper.SelectByPrimaryKey(r.orderId);
+            order_record.Status = 3;
+            ordersMapper.UpdateByPrimaryKeySelective(order_record);
 
-        //    response.error = "Comment Successful";
-        //    response.status = "200";
-        //    return response;
-        //}
+            response.error = "Comment Successful";
+            response.status = "200";
+            return response;
+        }
 
         //public Response AllComment(int gameId, int from = 0, int to, int reverse = 1)
         //{

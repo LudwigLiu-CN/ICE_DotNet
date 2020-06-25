@@ -36,6 +36,7 @@ namespace PublisherPageService
                 else
                 {
                     response.status = "200";
+                    response.error = publisherRecord.PublisherId.ToString();
                     return response;
                 }
             }

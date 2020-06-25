@@ -182,10 +182,9 @@ namespace GameManageService
             }
             
 
-            if (allGameList.Count == 0)
-            {
-                return initGameList(pageSize, id);
-            }
+            
+            initGameList(pageSize, id);
+            
 
             presentGameList.Clear();
             for (int i = 0; i < allGameList.Count; i++)

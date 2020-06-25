@@ -61,7 +61,7 @@ namespace PublisherManageOrderService
             ArrayList result = new ArrayList();
             for (int i = 0; i < pageSize; i++)
             {
-                if (i > presentOrderList.Count)
+                if (i > presentOrderList.Count-1)
                 {
                     break;
                 }
@@ -99,10 +99,9 @@ namespace PublisherManageOrderService
                 response.error = "";
                 return response;
             }
-            if (allOrderList.Count == 0)
-            {
-                return initOrderList(pageSize, id);
-            }
+            
+            initOrderList(pageSize, id);
+            
 
             presentOrderList.Clear();
             for (int i = 0; i < allOrderList.Count; i++)

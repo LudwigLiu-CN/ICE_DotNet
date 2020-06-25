@@ -73,7 +73,7 @@ namespace GameManageService
             List<PlayedOn> playedOns = playedOnsMapper.SelectByGameId(game.GameId);
             for (int i = 0; i < playedOns.Count; i++)
             {
-                gameManager.consoles.Add(consolesMapper.SelectByPrimaryKey(playedOns[i].ConsoleId);
+                gameManager.consoles.Add(consolesMapper.SelectByPrimaryKey(playedOns[i].ConsoleId));
             }
 
             return gameManager;
@@ -373,7 +373,7 @@ namespace GameManageService
         }
 
         //modifGame
-        public Response modifyGame(GameModifier gameModifier int id)
+        public Response modifyGame(GameModifier gameModifier ,int id)
         {
             Response response = new Response();
             int pubId = id;
@@ -384,7 +384,7 @@ namespace GameManageService
                 response.error = "";
                 return response;
             }
-            SaleGame sg = (SaleGame)saleGameMapper.SelectByGameId(gameId)[0];
+            SaleGame sg = (SaleGame)saleGameMapper.SelectByGameId(gameModifier.game_id)[0];
             if (sg.PublisherId != pubId)
             {
                 response.status = "403";
@@ -409,7 +409,8 @@ namespace GameManageService
             }
             List<int> consoleIds = gameModifier.list_console_id;
             playedOnsMapper.DeleteByGameId(gameRecord.GameId);
-            for (int i = 0; i < consoleIds.Count; i++)
+            for (int
+                i = 0; i < consoleIds.Count; i++)
             {
                 PlayedOn temp = new PlayedOn();
                 temp.GameId = gameRecord.GameId;

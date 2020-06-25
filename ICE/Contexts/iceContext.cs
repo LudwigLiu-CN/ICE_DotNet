@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using DataAccessAPI.Models;
+using ICE.Models;
 
-namespace DataAccessAPI.Contexts
+namespace ICE.Contexts
 {
     public partial class iceContext : DbContext
     {

@@ -49,7 +49,7 @@ namespace UserService
             return response;
         }
 
-        public Response UpDateInfo(Users user)
+        public Response UpdateInfo(Users user)
         {
             Response response = new Response();
 

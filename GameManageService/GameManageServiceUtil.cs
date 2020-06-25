@@ -271,8 +271,11 @@ namespace GameManageService
             List<int> list_console_id = gameAdder.list_console_id;
             List<int> list_tag_id = gameAdder.list_tag_id;
             List<String> pictures = gameAdder.pictures;
+            //Console.WriteLine("----2323232323-------------------23232323----------:" + saleGameMapper.getMaxGameId()[0]);
+            SaleGame maxgame = (SaleGame)saleGameMapper.getMaxGameId()[0];
+            game.GameId =  maxgame.GameId+ 1;
+            Console.WriteLine("max_game_id" + game.GameId);
 
-            game.GameId = 0;
             game.RateCount = 0;
             game.OnSale = true;
             try
@@ -286,9 +289,9 @@ namespace GameManageService
                 return response;
             }
             //sequeceMapper!!!!!!!!!!!
-            int gameId = 0;
+            
             SaleGame saleGame = new SaleGame();
-            saleGame.GameId = gameId;
+            saleGame.GameId = game.GameId;
             saleGame.PublisherId = pubId;
             saleGameMapper.Insert(saleGame);
 
@@ -297,21 +300,21 @@ namespace GameManageService
             {
                 PlayedOn playedOn = new PlayedOn();
                 playedOn.ConsoleId = list_console_id[i];
-                playedOn.GameId = gameId;
-                playedOn.GameId = gameId;
+                playedOn.GameId = game.GameId;
+    
                 playedOnsMapper.Insert(playedOn);
             }
 
             Belong belong = new Belong();
             belong.CateId=cate_id;
-            belong.GameId = gameId;
+            belong.GameId = game.GameId;
             belongMapper.Insert(belong);
 
             //Tags
             for(int i = 0; i < list_tag_id.Count; i++)
             {
                 HasTag hastag = new HasTag();
-                hastag.GameId = gameId;
+                hastag.GameId = game.GameId;
                 hastag.TagId = list_tag_id[i];
                 hasTagMapper.Insert(hastag);
             }
@@ -320,7 +323,7 @@ namespace GameManageService
             //imageProcess(cover, pictures, gameId);
 
             ArrayList result = new ArrayList();
-            Games temp = gamesMapper.SelectByPrimaryKey(gameId);
+            Games temp = gamesMapper.SelectByPrimaryKey(game.GameId);
             GameManager gm = this.convertToGameManager(temp);
             result.Add(gm);
             response.error = "Upload Success!";

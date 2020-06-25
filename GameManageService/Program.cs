@@ -48,11 +48,16 @@ namespace GameManageService
             Console.WriteLine(gm3.title);
             Console.WriteLine(gm3.release_date);
 
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!要加一个生成新id的东西
-            //Console.WriteLine("-----------44444---------------------");
-            //GameAdder gameAdder = new GameAdder();
-            //gameAdder.title = "woxiaxiede";
-            //Response response4 = gameManageServiceUtil.addGame(gameAdder,2);
+            
+            Console.WriteLine("-----------44444---------------------");
+            GameAdder gameAdder = new GameAdder();
+            gameAdder.price = 10000;
+            gameAdder.title = "test";
+            gameAdder.cate_id = 1;
+
+            Response response4 = gameManageServiceUtil.addGame(gameAdder, 2);
+            Console.WriteLine("status:" + response4.status);
+            Console.WriteLine("count:" + response4.result.Count);
 
             //Console.WriteLine("----------5---------------------");
             //Response response5 = gameManageServiceUtil.deleteGame(1, 1, 2);

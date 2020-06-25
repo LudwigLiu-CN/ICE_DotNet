@@ -11,8 +11,6 @@ using Org.BouncyCastle.Asn1;
 
 namespace DataAccess.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class UserMapper : ControllerBase
     {
         iceContext iceContext_ = new iceContext();

@@ -11,8 +11,6 @@ using System.Collections;
 
 namespace DataAccess.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class HasTagMapper : ControllerBase
     {
         private iceContext iceContext_ = new iceContext();

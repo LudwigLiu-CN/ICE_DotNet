@@ -10,7 +10,6 @@ using MySqlX.XDevAPI.Common;
 
 namespace DataAccess.Controllers
 {
-    [Route("api/[controller]")]
     public class ChartMapper : ControllerBase
     {
         private iceContext iceContext_ = new iceContext();

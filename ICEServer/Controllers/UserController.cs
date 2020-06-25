@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using DataAccessAPI.Models;
 using Microsoft.AspNetCore.Http;
@@ -15,13 +16,7 @@ namespace ICEServer.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IHttpContextAccessor _accessor;
         UserServiceUtil userServiceUtil = new UserServiceUtil();
-
-        public UserController(IHttpContextAccessor accessor)
-        {
-            _accessor = accessor;
-        }
 
         [Route("/login")]
         [HttpPost]
@@ -47,9 +42,7 @@ namespace ICEServer.Controllers
                 response.error = "login";
                 response.result.Add(flag);
 
-                var httpContext = _accessor.HttpContext;
-                SessionHelper session = new SessionHelper(httpContext);
-                session.SetSession("id", flag.ToString());
+                HttpContext.Session.SetInt32("id", flag);
 
                 return response;
             }
@@ -60,9 +53,7 @@ namespace ICEServer.Controllers
         [HttpPost]
         public Response logout()
         {
-            var httpContext = _accessor.HttpContext;
-            SessionHelper session = new SessionHelper(httpContext);
-            session.SetSession("id", "-1");
+            HttpContext.Session.SetInt32("id", -1);
 
             Response response = new Response();
             response.status = "200";
@@ -89,48 +80,44 @@ namespace ICEServer.Controllers
         [HttpPost]
         public Response getAddress()
         {
-            var httpContext = _accessor.HttpContext;
-            SessionHelper session = new SessionHelper(httpContext);
-            String idStr = session.GetSession("id");
-            if(idStr == null)
+            int? id = HttpContext.Session.GetInt32("id");
+            if(id == null)
             {
                 Response response = new Response();
                 response.status = "500";
                 response.error = "Haven't logged in yet!";
                 return response;
             }
-            if(Convert.ToInt32(idStr) < 0)
+            if(id < 0)
             {
                 Response response = new Response();
                 response.status = "500";
                 response.error = "Haven't logged in yet!";
                 return response;
             }
-            return userServiceUtil.getAddress(Convert.ToInt32(idStr));
+            return userServiceUtil.getAddress(id.Value);
         }
 
         [Route("/updateAddress")]
         [HttpPost]
         public Response updateAddress(ArrayList addresses)
         {
-            var httpContext = _accessor.HttpContext;
-            SessionHelper session = new SessionHelper(httpContext);
-            String idStr = session.GetSession("id");
-            if (idStr == null)
+            int? id = HttpContext.Session.GetInt32("id");
+            if (id == null)
             {
                 Response response = new Response();
                 response.status = "500";
                 response.error = "Haven't logged in yet!";
                 return response;
             }
-            if (Convert.ToInt32(idStr) < 0)
+            if (id < 0)
             {
                 Response response = new Response();
                 response.status = "500";
                 response.error = "Haven't logged in yet!";
                 return response;
             }
-            return userServiceUtil.UpdateAddress(addresses, Convert.ToInt32(idStr));
+            return userServiceUtil.UpdateAddress(addresses, id.Value);
         }
     }
 }

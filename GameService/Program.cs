@@ -9,7 +9,7 @@ namespace GameService
             Console.WriteLine("Hello World!");
 
             GameServiceUtil gameServiceUtil = new GameServiceUtil();
-            Response re = gameServiceUtil.GetGameDetail(1);
+            Response re = gameServiceUtil.GetGameTag(1);
             int b = 0;
         }
     }

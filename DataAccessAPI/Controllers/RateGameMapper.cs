@@ -45,10 +45,10 @@ namespace DataAccess.Controllers
             return AvgRate;
         }
 
-        public int MyRate(int GameId, int UserId)
+        public int? MyRate(int GameId, int UserId)
         {
             var target = from r in iceContext_.RateGame where r.GameId == GameId && r.UserId == UserId select r.Rate;
-            return Convert.ToInt32(target);
+            return target.First();
         }
     }
 }

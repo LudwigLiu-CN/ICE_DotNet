@@ -20,8 +20,9 @@ namespace CommentService
             Response response = new Response();
 
             Reviews review = new Reviews();
+            review.ReviewId = 1;
             review.Content = r.content;
-            review.ReviewDate = new DateTime();
+            review.ReviewDate = DateTime.Now;
 
             try
             {

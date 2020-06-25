@@ -59,8 +59,8 @@ namespace RateService
 
             try
             {
-                int r = rateGameMapper.MyRate(gameId, thisUserId);
-                if (r == 0)
+                int? r = rateGameMapper.MyRate(gameId, thisUserId);
+                if (r == null)
                 {
                     response.error = "You have not rated yet!!!";
                     response.status = "404";

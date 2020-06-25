@@ -66,6 +66,11 @@ namespace UserService
             Response response = new Response();
             Users target = usersMapper.SelectByPrimaryKey(userId);
             String allAddress = target.Address;
+            if(allAddress == null)
+            {
+                response.status = "200";
+                return response;
+            }
             String[] seperateAddresses = allAddress.Split('%');
             foreach(var a in seperateAddresses)
             {

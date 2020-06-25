@@ -10,8 +10,6 @@ using DataAccessAPI.Models;
 
 namespace DataAccess.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class PlayedOnsMapper : ControllerBase
     {
         private iceContext _context = new iceContext();

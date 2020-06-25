@@ -28,19 +28,15 @@ namespace ICEServer
         {
             services.AddControllers();
 
+            // 添加一个内存缓存
+            services.AddDistributedMemoryCache();
+
             services.AddSession(options =>
             {
-                options.Cookie.Name = ".AdventureWorks.Session";
-                options.IdleTimeout = System.TimeSpan.FromSeconds(120);//设置session的过期时间
-                options.Cookie.HttpOnly = true;//设置在浏览器不能通过js获得该cookie的值
+                // 设置10秒钟Session过期来测试
+                options.IdleTimeout = TimeSpan.FromSeconds(1800);
+                options.Cookie.HttpOnly = true;
             });
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddHttpContextAccessor();
-            #region 跨域
-            services.AddCors(options =>
-            options.AddPolicy("AllowSameDomain",
-            builder => builder.WithOrigins().AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials()));
-            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

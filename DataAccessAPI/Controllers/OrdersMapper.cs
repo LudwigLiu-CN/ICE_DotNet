@@ -11,8 +11,6 @@ using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace DataAccess.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class OrdersMapper : ControllerBase
     {
         private iceContext iceContext_ = new iceContext();

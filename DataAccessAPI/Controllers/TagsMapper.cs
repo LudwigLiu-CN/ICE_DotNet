@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DataAccess.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+
     public class TagsMapper : ControllerBase
     {
         iceContext iceContext_ = new iceContext();

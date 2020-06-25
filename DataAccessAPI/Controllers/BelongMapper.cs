@@ -10,8 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DataAccessAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class BelongMapper : ControllerBase
     {
         private iceContext iceContext_ = new iceContext();

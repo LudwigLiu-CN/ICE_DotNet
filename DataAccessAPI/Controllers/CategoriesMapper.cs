@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DataAccess.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class CategoriesMapper : ControllerBase
     {
         private iceContext iceContext_ = new iceContext();

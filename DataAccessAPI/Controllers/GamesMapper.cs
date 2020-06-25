@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DataAccess.Controllers
 {
-    [Route("api/[controller")]
     public class GamesMapper : ControllerBase
     {
         private iceContext iceContext_ = new iceContext();

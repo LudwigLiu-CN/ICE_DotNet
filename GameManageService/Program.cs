@@ -16,6 +16,8 @@ namespace GameManageService
             Console.WriteLine(response.result.Count);
             Tags tag = (Tags)response.result[0];
             Console.WriteLine(tag.TagName);
+            
+
             Console.WriteLine("--------------------------------");
             Response response1 = gameManageServiceUtil.initGameList(10, 1);
             Console.WriteLine(response1.status);
@@ -23,6 +25,17 @@ namespace GameManageService
             Console.WriteLine(gm.game_id);
             Console.WriteLine(gm.title);
             Console.WriteLine(gm.release_date);
+
+
+            Console.WriteLine("--------------------------------");
+            Response response2 = gameManageServiceUtil.searchPublishedGames("death", 1, 10, 1);
+            Console.WriteLine(response1.status);
+            GameManager gm1 = (GameManager) response1.result[0];
+            Console.WriteLine(gm1.game_id);
+            Console.WriteLine(gm1.title);
+            Console.WriteLine(gm1.release_date);
+
+
 
 
 

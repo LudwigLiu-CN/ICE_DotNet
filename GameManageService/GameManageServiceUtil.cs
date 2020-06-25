@@ -87,7 +87,7 @@ namespace GameManageService
         {
             Response response = new Response();
             ArrayList result = tagsMapper.SelectAll();
-
+            Console.WriteLine(result[0]);
             response.result = result;
             response.status = "200";
             return response;

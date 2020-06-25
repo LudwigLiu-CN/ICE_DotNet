@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataAccessAPI.Models;
+using System;
+using System.Collections;
 
 namespace GameManageService
 {
@@ -7,8 +9,16 @@ namespace GameManageService
         static void Main(string[] args)
         {
             GameManageServiceUtil gameManageServiceUtil = new GameManageServiceUtil();
-            var result = gameManageServiceUtil.getAllTags();
-            Console.WriteLine(result.status);
+            Response response = gameManageServiceUtil.getAllTags();
+            Console.WriteLine(response);
+            Console.WriteLine(response.status);
+            Console.WriteLine(response.result);
+            Console.WriteLine(response.result.Count);
+            Tags tag = (Tags)response.result[0];
+            Console.WriteLine(tag.TagName);
+
+
+
             Console.WriteLine("Hello World!");
         }
     }

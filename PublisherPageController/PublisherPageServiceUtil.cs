@@ -65,7 +65,7 @@ namespace PublisherPageService
 
         }
         //updatePublisherInfo
-        public Response updateResponseInfo(Publishers publisher, int id)
+        public Response updatePublisherInfo(Publishers publisher, int id)
         {
             Response response = new Response();
             if(publisherMapper.SelectByPrimaryKey(id) == null)

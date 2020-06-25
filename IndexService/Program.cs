@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ResponseClass;
+
+using System;
 
 namespace IndexService
 {

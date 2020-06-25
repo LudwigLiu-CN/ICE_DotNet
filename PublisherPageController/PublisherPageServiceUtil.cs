@@ -6,6 +6,7 @@ using DataAccessAPI.Models;
 using DataAccessAPI.Controllers;
 using System.Collections;
 using PublisherPageService.Models;
+using ResponseClass;
 
 namespace PublisherPageService
 {

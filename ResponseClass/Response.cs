@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OrderService
+namespace ResponseClass
 {
-    class Response
+    public class Response
     {
         public String status { get; set; }
         public String error { get; set; }

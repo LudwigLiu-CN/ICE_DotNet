@@ -7,7 +7,7 @@ using System.Text;
 
 namespace IndexService
 {
-    class GameInfo
+    public class GameInfo
     {
         static HasTagMapper hasTagMapper = new HasTagMapper();
         static RateGameMapper rateGameMapper = new RateGameMapper();

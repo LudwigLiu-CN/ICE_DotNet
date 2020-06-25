@@ -3,7 +3,7 @@ using System;
 
 namespace PublisherManageOrderService
 {
-    internal class OrderManager
+    public class OrderManager
     {
         public int order_id{get;set;}
         public DateTime order_date {get;set;}

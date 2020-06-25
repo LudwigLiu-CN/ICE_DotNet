@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CommentService
 {
-    class ReviewAdder
+    public class ReviewAdder
     {
         public int orderId;
         public string content;

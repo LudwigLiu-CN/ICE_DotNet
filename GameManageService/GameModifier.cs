@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameManageService
 {
-    class GameModifier
+    public class GameModifier
     {
         public int game_id{get;set;}
         public String title{get;set;}

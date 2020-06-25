@@ -18,9 +18,5 @@
     <ProjectReference Include="..\WishListSerive\WishListSerive.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 
 </Project>

@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessAPI\DataAccessAPI.csproj" />
+    <ProjectReference Include="..\ResponseClass\ResponseClass.csproj" />
   </ItemGroup>
 
 </Project>

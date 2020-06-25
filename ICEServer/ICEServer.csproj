@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CartService\CartService.csproj" />
+    <ProjectReference Include="..\CommentService\CommentService.csproj" />
+    <ProjectReference Include="..\GameManageService\GameManageService.csproj" />
+    <ProjectReference Include="..\GameService\GameService.csproj" />
+    <ProjectReference Include="..\IndexService\IndexService.csproj" />
+    <ProjectReference Include="..\OrderService\OrderService.csproj" />
+    <ProjectReference Include="..\PublisherManageOrderService\PublisherManageOrderService.csproj" />
+    <ProjectReference Include="..\PublisherPageController\PublisherPageService.csproj" />
+    <ProjectReference Include="..\RateService\RateService.csproj" />
+    <ProjectReference Include="..\UserService\UserService.csproj" />
+    <ProjectReference Include="..\WishListSerive\WishListSerive.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+
+</Project>

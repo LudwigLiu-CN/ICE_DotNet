@@ -9,7 +9,7 @@ using System.Text;
 
 namespace GameService
 {
-    class GameServiceUtil
+    public class GameServiceUtil
     {
         GamesMapper gamesMapper = new GamesMapper();
         PlayedOnsMapper playedOnsMapper = new PlayedOnsMapper();

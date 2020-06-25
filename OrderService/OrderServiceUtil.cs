@@ -7,7 +7,7 @@ using System.Text;
 
 namespace OrderService
 {
-    class OrderServiceUtil
+    public class OrderServiceUtil
     {
         OrdersMapper ordersMapper = new OrdersMapper();
         UserMapper userMapper = new UserMapper();

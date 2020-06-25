@@ -9,7 +9,7 @@ using Ubiety.Dns.Core;
 
 namespace GameManageService
 {
-    class GameManageServiceUtil
+    public class GameManageServiceUtil
     {
         TagsMapper tagsMapper = new TagsMapper();
         PublisherMapper publisherMapper = new PublisherMapper();

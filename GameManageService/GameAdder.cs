@@ -18,5 +18,12 @@ namespace GameManageService
         public List<int> list_console_id{get;set;}
         public List<int> list_tag_id{get;set;}
         public List<String> pictures{get;set;}
+
+        public GameAdder()
+        {
+            list_console_id = new List<int>();
+            list_tag_id = new List<int>();
+            pictures = new List<string>();
+        }
     }
 }

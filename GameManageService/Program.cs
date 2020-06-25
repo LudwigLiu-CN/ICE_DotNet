@@ -19,7 +19,13 @@ namespace GameManageService
             Console.WriteLine("--------------------------------");
             Response response1 = gameManageServiceUtil.initGameList(10, 1);
             Console.WriteLine(response1.status);
-            Console.WriteLine(response1.result);
+            GameManager gm = (GameManager) response1.result[0];
+            Console.WriteLine(gm.game_id);
+            Console.WriteLine(gm.title);
+            Console.WriteLine(gm.release_date);
+
+
+
 
 
 

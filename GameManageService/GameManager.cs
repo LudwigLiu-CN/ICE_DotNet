@@ -25,6 +25,14 @@ namespace GameManageService
         public List<String> pictures { get; set; }
         public List<Consoles> consoles { get; set; }
 
+        public GameManager()
+        {
+            tags_list = new List<Tags>();
+            pictures = new List<string>();
+            consoles = new List<Consoles>();
+
+        }
+
        
 
     }

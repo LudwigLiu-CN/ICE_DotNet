@@ -13,5 +13,10 @@ namespace GameManageService
         public bool pre_order{get;set;}
         public String description{get;set;}
         public List<int> list_console_id{get;set;}
+
+        public GameModifier()
+        {
+            list_console_id = new List<int>();
+        }
     }
 }

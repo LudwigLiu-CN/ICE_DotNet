@@ -57,5 +57,16 @@ namespace DataAccess.Controllers
             }
             return results;
         }
+
+        public ArrayList getMaxGameId()
+        {
+            var target = from sg in iceContext_.SaleGame orderby sg.GameId descending select sg;
+            ArrayList results = new ArrayList();
+            foreach(var sg in target)
+            {
+                results.Add(sg);
+            }
+            return results;
+        }
     }
 }

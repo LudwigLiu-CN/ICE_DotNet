@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IndexService
+namespace GameService
 {
     class Program
     {
@@ -8,8 +8,8 @@ namespace IndexService
         {
             Console.WriteLine("Hello World!");
 
-            IndexServiceUtil indexServiceUtil = new IndexServiceUtil();
-            Response re = indexServiceUtil.GetGames(true);
+            GameServiceUtil gameServiceUtil = new GameServiceUtil();
+            Response re = gameServiceUtil.GetGameDetail(1);
             int b = 0;
         }
     }

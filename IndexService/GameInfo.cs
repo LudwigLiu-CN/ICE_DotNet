@@ -11,6 +11,7 @@ namespace IndexService
     {
         static HasTagMapper hasTagMapper = new HasTagMapper();
         static RateGameMapper rateGameMapper = new RateGameMapper();
+        static TagsMapper tagsMapper = new TagsMapper();
         public int id { get; set; }
         public String cover_path { get; set; }
         public float? price { get; set; }
@@ -31,7 +32,8 @@ namespace IndexService
             for (int i = 0; i < hasTags.Count; i++)
             {
                 HasTag ht = (HasTag)hasTags[i];
-                tagNames.Add(ht.Tag.TagName);
+                Tags t = tagsMapper.SelectByPrimaryKey(ht.TagId);
+                tagNames.Add(t.TagName);
             }
             result.tags_list = tagNames;
 

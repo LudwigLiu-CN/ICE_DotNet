@@ -78,6 +78,17 @@ namespace DataAccess.Controllers
             iceContext_.SaveChanges();
         }
 
+        public ArrayList SelectByUserName(String name)
+        {
+            var targets = from u in iceContext_.Users where u.UserName == name select u;
+            ArrayList results = new ArrayList();
+            foreach(var u in targets)
+            {
+                results.Add(u);
+            }
+            return results;
+        }
+
         //精确匹配
         public ArrayList SelectUser(Users user)
         {

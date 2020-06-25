@@ -33,7 +33,11 @@ namespace GameManageService
             gameManager.game_id = game.GameId;
             gameManager.title = game.Title;
             gameManager.price = (float)game.Price;
-            gameManager.discount = (bool)game.Discount;
+            if (game.Discount != null)
+            {
+                gameManager.discount = (bool)game.Discount.Value;
+
+            }
             if (game.AverageRate == null)
             {
                 gameManager.average_rate = -1;
@@ -42,17 +46,35 @@ namespace GameManageService
             {
                 gameManager.average_rate = (float)game.AverageRate;
             }
-            gameManager.release_date = (DateTime)game.ReleaseDate;
-            gameManager.pre_order = (bool)game.PreOrder;
-            gameManager.rate_count = (int)game.RateCount;
+            if (game.ReleaseDate != null)
+            {
+                gameManager.release_date = (DateTime)game.ReleaseDate;
+
+            }
+            if (game.PreOrder != null)
+            {
+                gameManager.pre_order = (bool)game.PreOrder;
+
+            }
+            if (game.RateCount != null)
+            {
+                gameManager.rate_count = (int)game.RateCount;
+
+            }
+            
             gameManager.cover = game.CoverPath;
             gameManager.description = game.Description;
             gameManager.on_sale = (bool)game.OnSale;
 
             //Cate
+            
             Belong belong = belongMapper.SelectByPrimaryKey(game.GameId);
-            Categories categories = categoriesMapper.SelectByPrimaryKey(belong.CateId);
-            gameManager.category = categories;
+            if (belong != null)
+            {
+                Categories categories = categoriesMapper.SelectByPrimaryKey(belong.CateId);
+                gameManager.category = categories;
+            }
+            
 
             //Tags
             ArrayList hasTags = hasTagMapper.SelectByGameId(game.GameId);
@@ -143,31 +165,7 @@ namespace GameManageService
             return response;
         }
 
-        //orderNumber Session
-        //public Response orderNumber(int id)
-        //{
-        //    Response response = new Response();
-
-        //    int pubId = id;
-        //    if (publisherMapper.SelectByPrimaryKey(pubId) == null)
-        //    {
-        //        response.status = "403";
-        //        response.error = "";
-        //        return response;
-        //    }
-
-        //    ArrayList result = new ArrayList();
-        //    result.Add(presentOrderList.Count);
-        //    response.result = result;
-        //    response.status = "200";
-        //    return response;
-
-        //    //if (!Objects.equals(sessionService.auth(session).getStatus(), "200"))
-        //    //{
-        //    //    return sessionService.auth(session);
-        //    //}
-
-        //}
+       
 
         // searchPublishedGames
         public Response searchPublishedGames(String query, int currentPage, int pageSize, int id)
@@ -266,7 +264,7 @@ namespace GameManageService
             game.PreOrder=gameAdder.pre_order;
             game.Description=gameAdder.description;
 
-            int cate_id = gameAdder.cate_id;
+            int? cate_id = gameAdder.cate_id;
             String cover = gameAdder.cover;
             List<int> list_console_id = gameAdder.list_console_id;
             List<int> list_tag_id = gameAdder.list_tag_id;
@@ -304,11 +302,14 @@ namespace GameManageService
     
                 playedOnsMapper.Insert(playedOn);
             }
-
-            Belong belong = new Belong();
-            belong.CateId=cate_id;
-            belong.GameId = game.GameId;
-            belongMapper.Insert(belong);
+            if (cate_id != null)
+            {
+                Belong belong = new Belong();
+                belong.CateId = cate_id.Value;
+                belong.GameId = game.GameId;
+                belongMapper.Insert(belong);
+            }
+            
 
             //Tags
             for(int i = 0; i < list_tag_id.Count; i++)

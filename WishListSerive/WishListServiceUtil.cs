@@ -7,7 +7,7 @@ using System.Text;
 
 namespace WishListSerive
 {
-    class WishListServiceUtil
+    public class WishListServiceUtil
     {
         WishlishMapper wishlishMapper = new WishlishMapper();
         GamesMapper gamesMapper = new GamesMapper();

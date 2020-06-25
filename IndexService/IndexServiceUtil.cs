@@ -9,7 +9,7 @@ using System.Text;
 
 namespace IndexService
 {
-    class IndexServiceUtil
+    public class IndexServiceUtil
     {
         private static ArrayList gameList = new ArrayList();
         private static int askTimes = 0;

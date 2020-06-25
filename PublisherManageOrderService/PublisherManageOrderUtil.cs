@@ -8,7 +8,7 @@ using Ubiety.Dns.Core;
 
 namespace PublisherManageOrderService
 {
-    class PublisherManageOrderUtil
+    public class PublisherManageOrderUtil
     {
         PublisherMapper publisherMapper = new PublisherMapper();
         OrdersMapper ordersMapper = new OrdersMapper();

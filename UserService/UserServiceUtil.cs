@@ -8,7 +8,7 @@ using System.Text;
 
 namespace UserService
 {
-    class UserServiceUtil
+    public class UserServiceUtil
     {
         UserMapper usersMapper = new UserMapper();
         public int Login(Users user)

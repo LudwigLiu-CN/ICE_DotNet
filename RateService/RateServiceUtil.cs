@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RateService
 {
-    class RateServiceUtil
+    public class RateServiceUtil
     {
         RateGameMapper rateGameMapper = new RateGameMapper();
         GamesMapper gamesMapper = new GamesMapper();

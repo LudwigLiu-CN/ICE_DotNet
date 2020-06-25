@@ -9,7 +9,7 @@ using PublisherPageService.Models;
 
 namespace PublisherPageService
 {
-    class PublisherPageServiceUtil
+    public class PublisherPageServiceUtil
     {
         PublisherMapper publisherMapper = new PublisherMapper();
 

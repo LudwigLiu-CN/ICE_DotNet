@@ -16,6 +16,11 @@ namespace GameManageService
             Console.WriteLine(response.result.Count);
             Tags tag = (Tags)response.result[0];
             Console.WriteLine(tag.TagName);
+            Console.WriteLine("--------------------------------");
+            Response response1 = gameManageServiceUtil.initGameList(10, 1);
+            Console.WriteLine(response1.status);
+            Console.WriteLine(response1.result);
+
 
 
 

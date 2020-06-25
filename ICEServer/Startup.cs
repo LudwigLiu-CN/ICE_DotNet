@@ -31,7 +31,7 @@ namespace ICEServer
             services.AddSession(options =>
             {
                 options.Cookie.Name = ".AdventureWorks.Session";
-                options.IdleTimeout = System.TimeSpan.FromSeconds(-1);//设置session的过期时间
+                options.IdleTimeout = System.TimeSpan.FromSeconds(120);//设置session的过期时间
                 options.Cookie.HttpOnly = true;//设置在浏览器不能通过js获得该cookie的值
             });
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();

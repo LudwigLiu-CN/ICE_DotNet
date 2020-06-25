@@ -10,7 +10,7 @@ using System.Text;
 
 namespace CartService
 {
-    class CartServiceUtil
+    public class CartServiceUtil
     {
         ChartMapper chartMapper = new ChartMapper();
         BelongMapper belongMapper = new BelongMapper();

@@ -96,6 +96,7 @@ namespace ICEServer.Controllers
             else
             {
                 Response response = gameManageService.addGame(gameAdder, id.Value);
+
                 return response;
             }
         }
@@ -115,12 +116,25 @@ namespace ICEServer.Controllers
             }
             else
             {
+                int i = 0;
                 foreach(var f in files.Files)
                 {
+                    i += 1;
                     string[] strs = f.FileName.Split('.');
-                    string path = "Img/Games/" + game_id +"/"+game_id+type+"."+strs[strs.Length-1];
+                    string path;
+                    if(type == "cover")
+                    {
+                        path = "Img/Games/" + game_id + "/" +  type + "." + strs[strs.Length - 1];
+
+                    }
+                    else
+                    {
+                        path = "Img/Games/" + game_id + "/" + i + "." + strs[strs.Length - 1];
+
+                    }
                     f.CopyTo(new FileStream(path, FileMode.Create));
                     response.status = "200";
+                    //response.error = "Upload success !";
                 }
                 
                 return response;

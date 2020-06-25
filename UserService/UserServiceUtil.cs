@@ -14,6 +14,10 @@ namespace UserService
         public int Login(Users user)
         {
             ArrayList targets = usersMapper.SelectByUserName(user.UserName);
+            if (targets.Count == 0)
+            {
+                return -2;
+            }
             Users target = (Users)targets[0];
             if (target.UserName == user.UserName && target.Pwd == user.Pwd)
             {
@@ -50,7 +54,7 @@ namespace UserService
 
             usersMapper.UpdateByPrimaryKeySelective(user);
             response.status = "200";
-            response.error = "";
+            response.error = "Update Success!";
             return response;
         }
 
@@ -80,6 +84,7 @@ namespace UserService
                 all = all + '%' + (String)addresses[i];
             }
             target.Address = all;
+            usersMapper.UpdateByPrimaryKeySelective(target);
             response.status = "200";
             return response;
         }

@@ -59,7 +59,18 @@ namespace UserService
             return response;
         }
 
-        //UpdateAvatar:文件流
+        public Response updateAvatar(String path, int userId)
+        {
+            Response response = new Response();
+
+            Users user = usersMapper.SelectByPrimaryKey(userId);
+            user.AvatarPath = path;
+            usersMapper.UpdateByPrimaryKeySelective(user);
+
+            response.status = "200";
+            response.error = "Success!";
+            return response;
+        }
 
         public Response getAddress(int userId)
         {

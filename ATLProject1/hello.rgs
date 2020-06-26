@@ -1,0 +1,26 @@
+HKCR
+{
+	hello.import.1 = s 'hello class'
+	{
+		CLSID = s '{5a64f1c2-97a3-47f0-8d10-5b27472532cf}'
+	}
+	hello.import = s 'hello class'
+	{		
+		CurVer = s 'hello.import.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5a64f1c2-97a3-47f0-8d10-5b27472532cf} = s 'hello class'
+		{
+			ProgID = s 'hello.import.1'
+			VersionIndependentProgID = s 'hello.import'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{31f48bac-bd78-4312-911b-8a19d554bc56}'
+			Version = s '1.0'
+		}
+	}
+}

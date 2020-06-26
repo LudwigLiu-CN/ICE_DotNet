@@ -1,0 +1,61 @@
+﻿// ATLProject1.idl: ATLProject1 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 生成类型库(ATLProject1.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(a817e7a2-43fa-11d0-9e44-00aa00b6770a),
+	dual,
+	pointer_default(unique)
+]
+interface IComponentRegistrar : IDispatch
+{
+	[id(1)]	HRESULT Attach([in] BSTR bstrPath);
+	[id(2)]	HRESULT RegisterAll();
+	[id(3)]	HRESULT UnregisterAll();
+	[id(4)]	HRESULT GetComponents([out] SAFEARRAY(BSTR)* pbstrCLSIDs, [out] SAFEARRAY(BSTR)* pbstrDescriptions);
+	[id(5)]	HRESULT RegisterComponent([in] BSTR bstrCLSID);
+	[id(6)] HRESULT UnregisterComponent([in] BSTR bstrCLSID);
+};
+
+[
+	object,
+	uuid(ff88c870-69d0-46af-9576-8a9bc04c48a2),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface Ihello : IDispatch
+{
+	[id(1)] HRESULT hahaha([out] LONG* a);
+};
+[
+	uuid(31f48bac-bd78-4312-911b-8a19d554bc56),
+	version(1.0),
+	custom(a817e7a1-43fa-11d0-9e44-00aa00b6770a,"{cffc0341-3515-4bff-9ccb-7c39c784b429}")
+]
+library ATLProject1Lib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(cffc0341-3515-4bff-9ccb-7c39c784b429)
+	]
+	coclass CompReg
+	{
+		[default] interface IComponentRegistrar;
+	};
+	[
+		uuid(5a64f1c2-97a3-47f0-8d10-5b27472532cf)
+	]
+	coclass hello
+	{
+		[default] interface Ihello;
+	};
+};
+
+import "shobjidl.idl";

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PublisherManageOrderService;
 using ResponseClass;
+using System.Runtime.InteropServices;
 
 namespace ICEServer.Controllers
 {
@@ -14,6 +15,7 @@ namespace ICEServer.Controllers
     public class PublisherManageOrderController : ControllerBase
     {
         PublisherManageOrderUtil publisherManageOrderServie = new PublisherManageOrderUtil();
+        ATLProject1Lib.helloClass hello = new ATLProject1Lib.helloClass();
 
         [Route("/initOrderList")]
         [HttpGet]

@@ -9,11 +9,38 @@ using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.Json;
 using HandleAddress;
+using System.Runtime.InteropServices;
 
 namespace UserService
 {
     public class UserServiceUtil
     {
+        [DllImport("tsetDll.dll")]
+        public static extern void SetTable(string source);
+
+        [DllImport("tsetDll.dll")]
+        public static extern int Base64Encode(byte[] source, int lSource, StringBuilder target, int lTarget);
+
+        [DllImport("tsetDll.dll")]
+        public static extern int Base64Decode(string source, int lSource, byte[] target, int lTarget);
+
+        [DllImport("tsetDll.dll")]
+        public static extern int test_fun();
+
+        public string Base64Encode_string(string input)
+        {
+            var baSrc = Encoding.UTF8.GetBytes(input);
+            var lSrc = baSrc.Length;
+            var lTgt = (lSrc + 2) / 3 * 4;
+            var tgt = new StringBuilder(lTgt);
+            var n = UserServiceUtil.Base64Encode(baSrc, lSrc, tgt, lTgt);
+            if (n >= 0)
+                return tgt.ToString(0, n);
+            else
+                return "-1";
+        }
+
+
         UserMapper usersMapper = new UserMapper();
         public int Login(Users user)
         {
@@ -23,9 +50,12 @@ namespace UserService
                 return -2;
             }
             Users target = (Users)targets[0];
-            if (target.UserName == user.UserName && target.Pwd == user.Pwd)
+            if (target.UserName == user.UserName)
             {
-                return target.UserId;
+                if(target.Pwd == Base64Encode_string(user.Pwd))
+                {
+                    return target.UserId;
+                }
             }
             return -1;
         }
@@ -52,6 +82,7 @@ namespace UserService
                 return response;
             }
             user.UserId = 1000000;
+            user.Pwd = Base64Encode_string(user.Pwd);
             usersMapper.Insert(user);
             targets = usersMapper.SelectByUserName(user.UserName);
             Users target = (Users)targets[0];
@@ -64,6 +95,11 @@ namespace UserService
         public Response UpdateInfo(Users user)
         {
             Response response = new Response();
+
+            if (user.Pwd != null)
+            {
+                user.Pwd = Base64Encode_string(user.Pwd);
+            }
 
             usersMapper.UpdateByPrimaryKeySelective(user);
             response.status = "200";

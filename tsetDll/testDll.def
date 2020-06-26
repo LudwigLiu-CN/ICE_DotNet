@@ -1,0 +1,6 @@
+LIBRARY tsetDll
+EXPORTS
+	SetBase64Table
+	Base64Encode
+	Base64Decode
+	test_fun

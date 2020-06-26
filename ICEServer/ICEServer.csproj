@@ -39,6 +39,7 @@
     <ProjectReference Include="..\PublisherManageOrderService\PublisherManageOrderService.csproj" />
     <ProjectReference Include="..\PublisherPageController\PublisherPageService.csproj" />
     <ProjectReference Include="..\RateService\RateService.csproj" />
+    <ProjectReference Include="..\tsetDll\tsetDll.vcxproj" />
     <ProjectReference Include="..\UserService\UserService.csproj" />
     <ProjectReference Include="..\WishListSerive\WishListSerive.csproj" />
   </ItemGroup>

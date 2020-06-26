@@ -28,5 +28,10 @@
     <ProjectReference Include="..\WishListSerive\WishListSerive.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Img\Games\" />
+    <Folder Include="Img\Users\" />
+  </ItemGroup>
+
 
 </Project>

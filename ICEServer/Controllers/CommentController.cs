@@ -39,20 +39,20 @@ namespace ICEServer.Controllers
 
             return response;
         }
+        /*
+        [Route("/allComment")]
+        [HttpPost]
+        public Response allComment(int gameId, int from = 0, int to, int reverse = 1)
+        {
+            Response response = new Response();
 
-        //[Route("/allComment")]
-        //[HttpPost]
-        //public Response allComment(int gameId, int from = 0, int to, int reverse = 1)
-        //{
-        //    Response response = new Response();
+            var httpContext = _accessor.HttpContext;
+            SessionHelper session = new SessionHelper(httpContext);
+            int userid = Convert.ToInt32(session.GetSession("id"));
 
-        //    var httpContext = _accessor.HttpContext;
-        //    SessionHelper session = new SessionHelper(httpContext);
-        //    int userid = Convert.ToInt32(session.GetSession("id"));
-
-        //    response = commentServiceUtil.
-        //}
-
+            response = commentServiceUtil.
+        }
+        */
         [Route("/checkMyComment")]
         [HttpGet]
         public Response checkMyComment(int gameId)

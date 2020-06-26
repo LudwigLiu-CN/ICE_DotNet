@@ -147,7 +147,7 @@ namespace OrderService
                 return response;
             }
 
-            order.OrderId = 1;
+            order.OrderId = 20;
             order.Status = 0;
             order.Date = DateTime.Now;
             order.UserId = userId;

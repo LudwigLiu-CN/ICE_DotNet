@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.Json;
+using HandleAddress;
 
 namespace UserService
 {
@@ -93,11 +94,31 @@ namespace UserService
                 response.status = "200";
                 return response;
             }
+
             String[] seperateAddresses = allAddress.Split('%');
-            foreach(var a in seperateAddresses)
+            /*
+            sbyte[] sbArray = (sbyte[])((Array)System.Text.Encoding.Default.GetBytes(allAddress));
+            unsafe
+            {
+                fixed (sbyte* psb = sbArray)
+                {
+                    AddressHelper addressHelper = new AddressHelper(psb);
+                    addressHelper.test();
+                    string address1 = new string(addressHelper.add1);
+                    string address2 = new string(addressHelper.add2);
+                    string address3 = new string(addressHelper.add3);
+                    string address4 = new string(addressHelper.add4);
+                    string address5 = new string(addressHelper.add5);
+                    int b = 0;
+                }
+            }
+            */
+
+            foreach (var a in seperateAddresses)
             {
                 response.result.Add(a);
             }
+
             response.status = "200";
             return response;
         }

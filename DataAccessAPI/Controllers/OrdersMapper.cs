@@ -15,8 +15,6 @@ namespace DataAccess.Controllers
     {
         private iceContext iceContext_ = new iceContext();
 
-        [Route("/OrdersMapper/deleteByPrimaryKey")]
-        [HttpGet]
         public void DeleteByPrimaryKey(int orderId)
         {
             var t = iceContext_.Orders.FirstOrDefault(m => m.OrderId == orderId);
@@ -27,8 +25,6 @@ namespace DataAccess.Controllers
             }
         }
 
-        [Route("/OrdersMapper/Insert")]
-        [HttpGet]
         public void Insert(Orders order)
         {
             iceContext_.Orders.Add(order);
@@ -85,16 +81,13 @@ namespace DataAccess.Controllers
             iceContext_.Orders.Update(target);
             iceContext_.SaveChanges();
         }
-        [Route("/OrdersMapper/orderNumOf")]
-        [HttpGet]
+
         public int OrderNumOf(int userId)
         {
             var num = (from o in iceContext_.Orders where o.UserId == userId select o).Count();
             return num;
         }
 
-        [Route("/OrdersMapper/selectByPublisherId")]
-        [HttpGet]
         public List<Orders> SelectByPublishierId(int publisherId)
         {
             var targets = from o in iceContext_.Orders
@@ -113,8 +106,6 @@ namespace DataAccess.Controllers
 
         //需要加入game
 
-        [Route("/OrdersMapper/selectByUserId")]
-        [HttpGet]
         public List<Orders> SelectByUserId(int userId)
         {
             var targets = from o in iceContext_.Orders

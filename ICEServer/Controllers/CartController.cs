@@ -14,7 +14,6 @@ namespace ICEServer.Controllers
     [ApiController]
     public class CartController : ControllerBase
     {
-        private IHttpContextAccessor _accessor;
         CartServiceUtil cartServiceUtil = new CartServiceUtil();
 
         [Route("/getMyCart")]

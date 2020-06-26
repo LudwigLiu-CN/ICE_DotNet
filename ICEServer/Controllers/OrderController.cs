@@ -14,7 +14,6 @@ namespace ICEServer.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private IHttpContextAccessor _accessor;
         OrderServiceUtil orderServiceUtil = new OrderServiceUtil();
 
         [Route("/initAllOrderList")]

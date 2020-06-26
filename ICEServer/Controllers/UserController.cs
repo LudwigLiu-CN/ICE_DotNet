@@ -19,6 +19,13 @@ namespace ICEServer.Controllers
     {
         UserServiceUtil userServiceUtil = new UserServiceUtil();
 
+        [Route("/getUser")]
+        [HttpGet]
+        public Response getUser(int userId)
+        {
+            return userServiceUtil.getUser(userId);
+        }
+
         [Route("/login")]
         [HttpPost]
         public Response login(Users user)

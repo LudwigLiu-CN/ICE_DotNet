@@ -30,6 +30,15 @@ namespace UserService
         }
 
         //Logout:之后在controller层直接操作session实现
+        public Response getUser(int userId)
+        {
+            Users user = usersMapper.SelectByPrimaryKey(userId);
+
+            Response response = new Response();
+            response.status = "200";
+            response.result.Add(user);
+            return response;
+        }
 
         public Response Register(Users user)
         {

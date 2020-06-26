@@ -13,7 +13,6 @@ namespace ICEServer.Controllers
     [ApiController]
     public class CommentController : ControllerBase
     {
-        private IHttpContextAccessor _accessor;
         CommentServiceUtil commentServiceUtil = new CommentServiceUtil();
 
         [Route("/addComment")]

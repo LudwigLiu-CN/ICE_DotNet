@@ -13,7 +13,6 @@ namespace ICEServer.Controllers
     [ApiController]
     public class WishListController : ControllerBase
     {
-        private IHttpContextAccessor _accessor;
         WishListServiceUtil wishListServiceUtil = new WishListServiceUtil();
 
         [Route("/checkInMyWishList")]

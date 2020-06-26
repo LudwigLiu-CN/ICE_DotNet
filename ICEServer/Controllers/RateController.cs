@@ -13,7 +13,6 @@ namespace ICEServer.Controllers
     [ApiController]
     public class RateController : ControllerBase
     {
-        private IHttpContextAccessor _accessor;
         RateServiceUtil rateServiceUtil = new RateServiceUtil();
 
         [Route("/submitRate")]

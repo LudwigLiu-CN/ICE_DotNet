@@ -6,8 +6,8 @@ namespace CommentService
 {
     public class ReviewAdder
     {
-        public int orderId;
-        public string content;
-        public int gameId;
+        public int orderId { get; set; }
+        public string content { get; set; }
+        public int gameId { get; set; }
     }
 }

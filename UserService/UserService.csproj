@@ -25,6 +25,7 @@
     <ProjectReference Include="..\DataAccessAPI\DataAccessAPI.csproj" />
     <ProjectReference Include="..\HandleAddress\HandleAddress.vcxproj" />
     <ProjectReference Include="..\ResponseClass\ResponseClass.csproj" />
+    <ProjectReference Include="..\tsetDll\tsetDll.vcxproj" />
   </ItemGroup>
 
 </Project>

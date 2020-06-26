@@ -62,7 +62,7 @@ namespace ICEServer.Controllers
                     {
                         if (!NextFile.Name.Substring(0, 6).Equals(tempReview.userId.ToString()))
                         {
-                            tempReview.avatarPath = "./Img/Users" + NextFile.Name;
+                            tempReview.avatarPath = "/Img/Users" + NextFile.Name;
                             break;
                         }
                     }

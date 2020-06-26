@@ -124,14 +124,14 @@ namespace ICEServer.Controllers
             foreach (var gInfo in allGames)
             {
                 GameInfo temp = (GameInfo)gInfo;
-                DirectoryInfo TheFolder = new DirectoryInfo("./Img/Games/" + temp.id.ToString());
+                DirectoryInfo TheFolder = new DirectoryInfo("./wwwroot/Img/Games/" + temp.id.ToString());
                 if (TheFolder.Exists)
                 {
                     foreach (FileInfo NextFile in TheFolder.GetFiles())
                     {
                         if (NextFile.Name.Substring(0, 5).Equals("cover"))
                         {
-                            temp.cover_path = "./Img/Games/" + temp.id.ToString() + "/" + NextFile.Name;
+                            temp.cover_path = "/Img/Games/" + temp.id.ToString() + "/" + NextFile.Name;
                         }
                     }
                 }

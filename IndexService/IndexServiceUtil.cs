@@ -26,6 +26,7 @@ namespace IndexService
             Response response = new Response();
             if (reset)
             {
+                askTimes = 0;
                 gameList = gamesMapper.GetAll();
             }
 

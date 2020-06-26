@@ -48,6 +48,7 @@ namespace ICEServer
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
 
             app.UseRouting();
 

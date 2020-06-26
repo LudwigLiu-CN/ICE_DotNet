@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -26,11 +26,6 @@
     <ProjectReference Include="..\RateService\RateService.csproj" />
     <ProjectReference Include="..\UserService\UserService.csproj" />
     <ProjectReference Include="..\WishListSerive\WishListSerive.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Img\Users\" />
-    <Folder Include="Img\Games\" />
   </ItemGroup>
 
 

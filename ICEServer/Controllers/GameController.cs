@@ -59,14 +59,14 @@ namespace ICEServer.Controllers
             Response response = new Response();
 
             ArrayList pics = new ArrayList();
-            DirectoryInfo TheFolder = new DirectoryInfo("./Img/Games/"+gameId.ToString());
+            DirectoryInfo TheFolder = new DirectoryInfo("./wwwroot/Img/Games/"+gameId.ToString());
             if (TheFolder.Exists)
             {
                 foreach (FileInfo NextFile in TheFolder.GetFiles())
                 {
                     if (!NextFile.Name.Substring(0, 5).Equals("cover"))
                     {
-                        response.result.Add(NextFile.FullName);
+                        response.result.Add("/Img/Games/" + gameId.ToString() + "/" + NextFile.Name);
                     }
                 }
             }

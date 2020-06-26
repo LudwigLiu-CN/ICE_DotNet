@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using DataAccessAPI.Models;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +18,8 @@ namespace ICEServer.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        UserServiceUtil userServiceUtil = new UserServiceUtil();
+        static UserServiceUtil userServiceUtil = new UserServiceUtil();
+        public static int mutex = 0;
 
         [Route("/getUser")]
         [HttpGet]
@@ -72,7 +74,26 @@ namespace ICEServer.Controllers
         [HttpPost]
         public Response register(Users user)
         {
-            return userServiceUtil.Register(user);
+            Thread newThread = new Thread(new ParameterizedThreadStart(tryRegister));
+            newThread.Start(user);
+
+            Response response = new Response();
+            response.status = "200";
+            response.error = "register success!";
+            return response;
+        }
+
+        public static void tryRegister(object arg)
+        {
+            Users user = (Users)arg;
+            while (mutex > 0)
+            {
+
+            }
+            mutex += 1;
+            Response response = userServiceUtil.Register(user);
+            mutex -= 1;
+            return;
         }
 
         [Route("/updateInfo")]

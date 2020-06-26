@@ -1,0 +1,26 @@
+HKCR
+{
+	SecurityOperator.Security.1 = s 'SecurityOperator class'
+	{
+		CLSID = s '{5cd5320d-269b-4819-b610-4448d5700886}'
+	}
+	SecurityOperator.Security = s 'SecurityOperator class'
+	{		
+		CurVer = s 'SecurityOperator.Security.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5cd5320d-269b-4819-b610-4448d5700886} = s 'SecurityOperator class'
+		{
+			ProgID = s 'SecurityOperator.Security.1'
+			VersionIndependentProgID = s 'SecurityOperator.Security'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{0a3fa73a-d0c0-48db-8c11-e4e6b1809cb2}'
+			Version = s '1.0'
+		}
+	}
+}

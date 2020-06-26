@@ -11,12 +11,15 @@ using ResponseClass;
 
 namespace ICEServer.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class PubliserPageController : ControllerBase
     {
         PublisherPageServiceUtil publisherPageService = new PublisherPageServiceUtil();
-
+        private readonly SecurityMaintainLib.SecurityOperatorClass HashTool = new SecurityMaintainLib.SecurityOperatorClass();
+       
+        
         [Route("/publisherLogin")]
         [HttpPost]
         public Response publisherLogin(Publishers publisher)
@@ -25,7 +28,10 @@ namespace ICEServer.Controllers
             if (response.status == "200")
             {
                 int id = int.Parse( response.error);
+                HashTool.HashNameAndPassword(publisher.PublisherName, publisher.Pwd, out string hashCode);
+                String hash_pwd = hashCode;
                 HttpContext.Session.SetInt32("id", id);
+                response.error = hashCode;
                 return response;
 
             }

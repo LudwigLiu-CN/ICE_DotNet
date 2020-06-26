@@ -1,0 +1,71 @@
+﻿// SecurityMaintain.idl: SecurityMaintain 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 生成类型库(SecurityMaintain.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(a817e7a2-43fa-11d0-9e44-00aa00b6770a),
+	dual,
+	pointer_default(unique)
+]
+interface IComponentRegistrar : IDispatch
+{
+	[id(1)]	HRESULT Attach([in] BSTR bstrPath);
+	[id(2)]	HRESULT RegisterAll();
+	[id(3)]	HRESULT UnregisterAll();
+	[id(4)]	HRESULT GetComponents([out] SAFEARRAY(BSTR)* pbstrCLSIDs, [out] SAFEARRAY(BSTR)* pbstrDescriptions);
+	[id(5)]	HRESULT RegisterComponent([in] BSTR bstrCLSID);
+	[id(6)] HRESULT UnregisterComponent([in] BSTR bstrCLSID);
+};
+
+[
+	object,
+	uuid(f164d2d5-df3a-42e6-afc2-5acfe3e904cc),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface ISecurityOperator : IDispatch
+{
+	[id(1)] HRESULT HashNameAndPassword([in] BSTR name, [in] BSTR password, [out] BSTR* hashValue);
+	[id(2)] HRESULT CheckHash([in] BSTR hash1, [in] BSTR hash2, [out] VARIANT_BOOL* compare);
+};
+[
+	uuid(0a3fa73a-d0c0-48db-8c11-e4e6b1809cb2),
+	version(1.0),
+	custom(a817e7a1-43fa-11d0-9e44-00aa00b6770a,"{a6252c44-fd91-4e56-b4d6-d825e176efd0}")
+]
+library SecurityMaintainLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(a6252c44-fd91-4e56-b4d6-d825e176efd0)
+	]
+	coclass CompReg
+	{
+		[default] interface IComponentRegistrar;
+	};
+	[
+		uuid(81665845-d55c-410f-b41e-a61860340702)
+	]
+	dispinterface _ISecurityOperatorEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		uuid(5cd5320d-269b-4819-b610-4448d5700886)
+	]
+	coclass SecurityOperator
+	{
+		[default] interface ISecurityOperator;
+		[default, source] dispinterface _ISecurityOperatorEvents;
+	};
+};
+
+import "shobjidl.idl";

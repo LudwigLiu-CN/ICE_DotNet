@@ -5,7 +5,9 @@ using ResponseClass;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using System.Text;
+using System.Text.Json;
 
 namespace UserService
 {
@@ -95,10 +97,11 @@ namespace UserService
         {
             Response response = new Response();
             Users target = usersMapper.SelectByPrimaryKey(userId);
-            String all = (String)addresses[0];
+            JsonElement first = (JsonElement)addresses[0];
+            String all = first.ToString();
             for(int i = 1; i < addresses.Count; i++)
             {
-                all = all + '%' + (String)addresses[i];
+                all = all + '%' + ((JsonElement)addresses[i]).ToString();
             }
             target.Address = all;
             usersMapper.UpdateByPrimaryKeySelective(target);

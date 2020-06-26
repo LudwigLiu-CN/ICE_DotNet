@@ -72,6 +72,21 @@ namespace ICEServer.Controllers
         [HttpPost]
         public Response updateInfo(Users user)
         {
+            Response response = new Response();
+            int? id = HttpContext.Session.GetInt32("id");
+            if (id == null)
+            {
+                response.status = "500";
+                response.error = "haven't logged in yet!";
+                return response;
+            }
+            if (id < 0)
+            {
+                response.status = "500";
+                response.error = "haven't logged in yet!";
+                return response;
+            }
+            user.UserId = id.Value;
             return userServiceUtil.UpdateInfo(user);
         }
 

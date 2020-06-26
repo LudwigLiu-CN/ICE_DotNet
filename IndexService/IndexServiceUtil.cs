@@ -32,7 +32,7 @@ namespace IndexService
             ArrayList result = new ArrayList();
             for (int i = askTimes * 12; i < (askTimes + 1) * 12; i++)
             {
-                if (i > gameList.Count)
+                if (i >= gameList.Count)
                 {
                     break;
                 }
@@ -84,7 +84,7 @@ namespace IndexService
             foreach (var belong in belongList)
             {
                 Belong tempBelong = (Belong)belong;
-                gameList.Add(tempBelong.Game);
+                gameList.Add(gamesMapper.SelectByPrimaryKey(tempBelong.GameId));
             }
 
             return GetGames(false);
@@ -98,7 +98,7 @@ namespace IndexService
             gameList.Clear();
             foreach (PlayedOn playedOn in playedOnList)
             {
-                gameList.Add(playedOn.Game);
+                gameList.Add(gamesMapper.SelectByPrimaryKey(playedOn.GameId));
             }
 
             return GetGames(false);
@@ -113,7 +113,7 @@ namespace IndexService
             foreach (var sg in saleGameList)
             {
                 SaleGame tempSaleGame = (SaleGame)sg;
-                gameList.Add(tempSaleGame.Game);
+                gameList.Add(gamesMapper.SelectByPrimaryKey(tempSaleGame.GameId));
             }
 
             return GetGames(false);

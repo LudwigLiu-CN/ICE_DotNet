@@ -106,7 +106,7 @@ namespace DataAccess.Controllers
         [HttpGet]
         public ArrayList SearchByTitle(string KeyWords)
         {
-            var targets = from g in iceContext_.Games where g.Title.Contains(KeyWords) select g;
+            var targets = from g in iceContext_.Games where g.Title.ToLower().Contains(KeyWords.ToLower()) select g;
             ArrayList results = new ArrayList();
             foreach(var g in targets)
             {

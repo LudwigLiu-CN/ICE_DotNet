@@ -14,7 +14,7 @@ namespace ICEServer.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        OrderServiceUtil orderServiceUtil = new OrderServiceUtil();
+        static OrderServiceUtil orderServiceUtil = new OrderServiceUtil();
 
         [Route("/initAllOrderList")]
         [HttpGet]

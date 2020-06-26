@@ -12,18 +12,18 @@ namespace OrderService
         UserMapper userMapper = new UserMapper();
         GamesMapper gamesMapper = new GamesMapper();
 
-        private int order_id;
-        private DateTime order_date;
-        private string address;
-        private Consoles console;
-        private string contact_tel;
-        private int status;
-        private float price;
+        public int order_id { get; set; }
+        public DateTime order_date { get; set; }
+        public string address { get; set; }
+        public Consoles console { get; set; }
+        public string contact_tel { get; set; }
+        public int status { get; set; }
+        public float price { get; set; }
 
-        private int user_id;
-        private string user_name;
-        private int game_id;
-        private string game_name;
+        public int user_id { get; set; }
+        public string user_name { get; set; }
+        public int game_id { get; set; }
+        public string game_name { get; set; }
 
         public OrderManager convertToOrderManager(Orders order)
         {

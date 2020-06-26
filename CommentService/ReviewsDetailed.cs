@@ -6,8 +6,8 @@ namespace CommentService
 {
     public class ReviewsDetailed
     {
-        public int userId;
-        public DateTime reviewDate;
+        public int? userId;
+        public DateTime? reviewDate;
         public String content;
     }
 }

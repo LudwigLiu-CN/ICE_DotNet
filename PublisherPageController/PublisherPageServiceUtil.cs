@@ -91,5 +91,19 @@ namespace PublisherPageService
             response.status = "200";
             return response;
         }
+
+        public Response getPublishers()
+        {
+            Response response = new Response();
+
+            List<Publishers> all = publisherMapper.SelectAll();
+            foreach(var p in all)
+            {
+                response.result.Add(p);
+            }
+
+            response.status = "200";
+            return response;
+        }
     }
 }

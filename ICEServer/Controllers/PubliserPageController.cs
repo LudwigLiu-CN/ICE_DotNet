@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -68,6 +69,13 @@ namespace ICEServer.Controllers
 
             }
 
+        }
+
+        [Route("/getPublishers")]
+        [HttpGet]
+        public Response getPublishers()
+        {
+            return publisherPageService.getPublishers();
         }
     }
 }

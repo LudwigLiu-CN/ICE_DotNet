@@ -85,7 +85,9 @@ namespace CommentService
             try
             {
                 ArrayList commentList = writeReviewMapper.SelectAllComment(gameId, from, to - from, reverse);
-                if (commentList.Count == 0)
+                ArrayList reviews = (ArrayList)commentList[0];
+                ArrayList uids = (ArrayList)commentList[1];
+                if (reviews.Count == 0)
                 {
                     response.error = "No commenet yet";
                     response.status = "404";
@@ -93,19 +95,19 @@ namespace CommentService
                 else
                 {
                     ArrayList resultList = new ArrayList();
-                    
-                    foreach(var cmt in commentList)
-                    {
-                        ReviewsDetailed temp = (ReviewsDetailed)cmt;
 
-                        int uid = temp.userId;
-                        Users u = userMapper.SelectByPrimaryKey(uid);
+                    for(int i = 0; i < uids.Count; i++)
+                    {
+                        Reviews review = (Reviews)reviews[i];
+                        int? uid = (int?)uids[i];
+
+                        Users u = userMapper.SelectByPrimaryKey(uid.Value);
                         ReviewWithUser reviewWithUser = new ReviewWithUser();
 
-                        reviewWithUser.userId = uid;
+                        reviewWithUser.userId = uid.Value;
                         reviewWithUser.username = u.UserName;
-                        reviewWithUser.content = temp.content;
-                        reviewWithUser.reviewDate = temp.reviewDate;
+                        reviewWithUser.content = review.Content;
+                        reviewWithUser.reviewDate = review.ReviewDate.Value;
                         resultList.Add(reviewWithUser);
                     }
 

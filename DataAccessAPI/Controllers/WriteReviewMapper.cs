@@ -63,19 +63,24 @@ namespace DataAccess.Controllers
                               orderby review.ReviewDate
                               select new
                               {
-                                  user_id = wr.UserId,
-                                  content = review.Content,
-                                  review_date = review.ReviewDate
+                                  userId = wr.UserId,
+                                  review = review
                               };
             ArrayList result = new ArrayList();
+            ArrayList reviewList = new ArrayList();
+            ArrayList userIds = new ArrayList();
             foreach(var cm in allComments)
             {
-                result.Add(cm);
+                reviewList.Add(cm.review);
+                userIds.Add(cm.userId);
             }
             if(reverse == 1)
             {
-                result.Reverse();
+                reviewList.Reverse();
+                userIds.Reverse();
             }
+            result.Add(reviewList);
+            result.Add(userIds);
             return result;
         }
 

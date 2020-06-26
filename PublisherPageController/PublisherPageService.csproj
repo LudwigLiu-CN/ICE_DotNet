@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessAPI\DataAccessAPI.csproj" />
-    <ProjectReference Include="..\HandleAddress\HandleAddress.vcxproj" />
     <ProjectReference Include="..\ResponseClass\ResponseClass.csproj" />
   </ItemGroup>
 

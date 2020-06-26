@@ -7,7 +7,6 @@ using DataAccessAPI.Controllers;
 using System.Collections;
 using PublisherPageService.Models;
 using ResponseClass;
-using HandleAddress;
 
 namespace PublisherPageService
 {
@@ -37,8 +36,7 @@ namespace PublisherPageService
                 else
                 {
                     response.status = "200";
-                    //response.error = publisherRecord.PublisherId.ToString();
-                    response.error = AddressHelper.add(1, 2).ToString();
+                    response.error = publisherRecord.PublisherId.ToString();
                     return response;
                 }
             }

@@ -17,9 +17,5 @@ namespace HandleAddress {
 			return addressHandler->getAll();
 		}
 
-		static int add(int a, int b) {
-			return a + b;
-		}
-
 	};
 }

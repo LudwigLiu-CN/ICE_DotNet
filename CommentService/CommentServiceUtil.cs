@@ -76,41 +76,48 @@ namespace CommentService
             response.status = "200";
             return response;
         }
+        /*
+        public Response AllComment(int gameId, int to, int from = 0, int reverse = 1)
+        {
+            Response response = new Response();
 
-        //public Response AllComment(int gameId, int from = 0, int to, int reverse = 1)
-        //{
-        //    Response response = new Response();
-
-        //    try
-        //    {
-        //        // 这里需要 writeReviewMapper 的 selectAllComment 函数，函数未实现。
-        //        ArrayList commentList = writeReviewMapper.SelectAllComment(gameId, from, to - from, reverse);
-        //        if (commentList.Count == 0)
-        //        {
-        //            response.error = "No commenet yet";
-        //            response.status = "404";
-        //        }
-        //        else
-        //        {
-        //            ArrayList resultList = new ArrayList();
-        //            for (int i = 0; i < commentList.Count; i++)
-        //            {
-        //                int uid = commentList[i];
-        //                Users u = userMapper.SelectByPrimaryKey(uid);
-        //                // 涉及到自定义的entity, reviewWithUser，未实现
-        //                // 涉及到文件路径，暂不实现
-        //            }
-        //            response.result = resultList;
-        //            response.status = "200";
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        response.error = "SQL Error!";
-        //        response.status = "403";
-        //    }
-        //    return response;
-        //}
+            try
+            {
+                ArrayList commentList = writeReviewMapper.SelectAllComment(gameId, from, to - from, reverse);
+                // List<ReviewsDetailed> commentList = writeReviewMapper.SelectAllComment(gameId, from, to - from, reverse);
+                if (commentList.Count == 0)
+                {
+                    response.error = "No commenet yet";
+                    response.status = "404";
+                }
+                else
+                {
+                    ArrayList resultList = new ArrayList();
+                    for (int i = 0; i < commentList.Count; i++)
+                    {
+                        int uid = commentList[i].
+                        Users u = userMapper.SelectByPrimaryKey(uid);
+                        // 涉及到自定义的entity, reviewWithUser，未实现
+                        // 涉及到文件路径，暂不实现
+                    }
+                    foreach (ReviewsDetailed comment in commentList)
+                    {
+                        int uid = comment.userId;
+                        Users u = userMapper.SelectByPrimaryKey(uid);
+                        ReviewWithUser reviewWithUser = new ReviewWithUser();
+                        String Path =
+                    }
+                    response.result = resultList;
+                    response.status = "200";
+                }
+            }
+            catch (Exception e)
+            {
+                response.error = "SQL Error!";
+                response.status = "403";
+            }
+            return response;
+        }*/
 
         public Response CheckMyComment(int thisUserId, int GameId)
         {
@@ -122,7 +129,7 @@ namespace CommentService
                 response.status = "200";
                 response.error = Convert.ToString(c);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 response.error = "SQL Error";
                 response.status = "403";

@@ -75,7 +75,7 @@ namespace ICEServer.Controllers
                     {
                         if (NextFile.Name.Substring(0, 5).Equals("cover"))
                         {
-                            temp.cover_path = NextFile.FullName;
+                            temp.cover_path = "./Img/Games/" + NextFile.Name;
                         }
                     }
                 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ResponseClass;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -110,8 +111,32 @@ namespace ICEServer.Controllers
                 return response;
             }
 
-            response = wishListServiceUtil.GetMyWishList((int)id);
+            return getAllCovers(wishListServiceUtil.GetMyWishList(id.Value));
+        }
 
+        public Response getAllCovers(Response inputResponse)
+        {
+            Response response = new Response();
+
+            ArrayList allGames = inputResponse.result;
+            foreach (var gInfo in allGames)
+            {
+                GameInfo temp = (GameInfo)gInfo;
+                DirectoryInfo TheFolder = new DirectoryInfo("./Img/Games/" + temp.id.ToString());
+                if (TheFolder.Exists)
+                {
+                    foreach (FileInfo NextFile in TheFolder.GetFiles())
+                    {
+                        if (NextFile.Name.Substring(0, 5).Equals("cover"))
+                        {
+                            temp.cover_path = "./Img/Games/" + NextFile.Name;
+                        }
+                    }
+                }
+
+                response.result.Add(temp);
+            }
+            response.status = "200";
             return response;
         }
     }

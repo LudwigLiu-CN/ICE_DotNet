@@ -4,6 +4,7 @@ using ResponseClass;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace CommentService
@@ -76,7 +77,7 @@ namespace CommentService
             response.status = "200";
             return response;
         }
-        /*
+        
         public Response AllComment(int gameId, int to, int from = 0, int reverse = 1)
         {
             Response response = new Response();
@@ -84,7 +85,6 @@ namespace CommentService
             try
             {
                 ArrayList commentList = writeReviewMapper.SelectAllComment(gameId, from, to - from, reverse);
-                // List<ReviewsDetailed> commentList = writeReviewMapper.SelectAllComment(gameId, from, to - from, reverse);
                 if (commentList.Count == 0)
                 {
                     response.error = "No commenet yet";
@@ -93,20 +93,22 @@ namespace CommentService
                 else
                 {
                     ArrayList resultList = new ArrayList();
-                    for (int i = 0; i < commentList.Count; i++)
+                    
+                    foreach(var cmt in commentList)
                     {
-                        int uid = commentList[i].
-                        Users u = userMapper.SelectByPrimaryKey(uid);
-                        // 涉及到自定义的entity, reviewWithUser，未实现
-                        // 涉及到文件路径，暂不实现
-                    }
-                    foreach (ReviewsDetailed comment in commentList)
-                    {
-                        int uid = comment.userId;
+                        ReviewsDetailed temp = (ReviewsDetailed)cmt;
+
+                        int uid = temp.userId;
                         Users u = userMapper.SelectByPrimaryKey(uid);
                         ReviewWithUser reviewWithUser = new ReviewWithUser();
-                        String Path =
+
+                        reviewWithUser.userId = uid;
+                        reviewWithUser.username = u.UserName;
+                        reviewWithUser.content = temp.content;
+                        reviewWithUser.reviewDate = temp.reviewDate;
+                        resultList.Add(reviewWithUser);
                     }
+
                     response.result = resultList;
                     response.status = "200";
                 }
@@ -117,7 +119,7 @@ namespace CommentService
                 response.status = "403";
             }
             return response;
-        }*/
+        }
 
         public Response CheckMyComment(int thisUserId, int GameId)
         {

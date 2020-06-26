@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using WishListService;
 
 namespace WishListSerive
 {
@@ -96,9 +97,11 @@ namespace WishListSerive
                     response.error = "Your wishlist is now empty";
                     return response;
                 }
-                for (int i = 0; i < l.Count; i++)
+                foreach(var wl in l)
                 {
-                    // 涉及到idea中service的部分以及文件路径的部分，暂不实现
+                    Wishlist temp = (Wishlist)wl;
+                    GameInfo temp_info = GameInfo.convertToGameInfo(gamesMapper.SelectByPrimaryKey(temp.GameId));
+                    result.Add(temp_info);
                 }
                 response.status = "200";
                 response.result = result;

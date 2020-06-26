@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ResponseClass;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,20 +41,38 @@ namespace ICEServer.Controllers
 
             return response;
         }
-        /*
+        
         [Route("/allComment")]
         [HttpPost]
-        public Response allComment(int gameId, int from = 0, int to, int reverse = 1)
+        public Response allComment(int gameId, int to, int from = 0, int reverse = 1)
         {
             Response response = new Response();
 
-            var httpContext = _accessor.HttpContext;
-            SessionHelper session = new SessionHelper(httpContext);
-            int userid = Convert.ToInt32(session.GetSession("id"));
+            Response tempResponse = commentServiceUtil.AllComment(gameId, to, from, reverse);
+            ArrayList comments = tempResponse.result;
 
-            response = commentServiceUtil.
+            foreach(var cmt in comments)
+            {
+                ReviewWithUser tempReview = (ReviewWithUser)cmt;
+
+                DirectoryInfo TheFolder = new DirectoryInfo("./Img/Users");
+                if (TheFolder.Exists)
+                {
+                    foreach (FileInfo NextFile in TheFolder.GetFiles())
+                    {
+                        if (!NextFile.Name.Substring(0, 6).Equals(tempReview.userId.ToString()))
+                        {
+                            tempReview.avatarPath = "./Img/Users" + NextFile.Name;
+                            break;
+                        }
+                    }
+                }
+                response.result.Add(tempReview);
+            }
+            response.status = "200";
+            return response;
         }
-        */
+        
         [Route("/checkMyComment")]
         [HttpGet]
         public Response checkMyComment(int gameId)
